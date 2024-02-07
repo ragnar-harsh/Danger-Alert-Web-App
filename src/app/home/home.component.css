@@ -1,0 +1,112 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .main{
+    height: 56.5vh;
+    background: url("/assets/images/home_image.jpg"), #000;
+    background-position: center;
+    background-size: cover;
+    
+  }
+  
+  header {
+    /* background-color: #3498db; */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    
+  }
+  
+  img{
+    width: 70vh;
+    height: 70vh; 
+    padding-top: 20px;
+  }
+  
+  section {
+    margin: 20px;
+  }
+  
+  h2 {
+    color: #3498db;
+    font-size: 30px;
+  }
+  
+  #company-info, #mission-vision {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  #team{
+    display: flex; flex-wrap: wrap; justify-content: space-around;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  .team-member {
+    padding: 10px;
+    
+    transition: transform 0.3s;
+    text-align: center;
+    margin-top: 20px;
+    margin: 20px;
+    width: 40vh;
+    align-items: center;
+}
+
+.team-member:hover {
+    transform: translateY(-20px);
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgb(0, 0, 0);
+}
+
+@media (max-width: 768px) {
+    .team-member {
+        flex: 1 1 100%;
+    }
+}
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  button {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+  }
+  
+  button:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  h3{
+    color: #3498db;
+    font-size: 26px;
+  }
+  p{
+    font-size: 20px;
+  }
+
+  #p-content{
+    padding-top: 23vh; font-size: 22px;
+  }

@@ -1,0 +1,10 @@
+{
+    "/apilocal": {
+        "target": "http://localhost:5172/api",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite":{
+            "^/apilocal": ""
+        }
+    }
+}
