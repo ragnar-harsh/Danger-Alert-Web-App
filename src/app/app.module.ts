@@ -22,6 +22,7 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
 import { AlertModels } from './dashboard/Data-Services/AlertModels.service';
 import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
 import { MemberComponent } from './dashboard/member/member.component';
+import { CustomAlertComponent } from './dashboard/custom-alert/custom-alert.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MemberComponent } from './dashboard/member/member.component';
     ServiceComponent,
     ProfileComponent,
     MemberComponent,
+    CustomAlertComponent,
   ],
   imports: [
     FormsModule,
