@@ -23,6 +23,10 @@ export class AlertModels{
         {
             name : 'member1',
             mobile : 'mobile1'
+        },
+        {
+            name : 'member2',
+            mobile : 'mobile2'
         }
     ]
 

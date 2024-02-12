@@ -14,6 +14,7 @@ import { MapComponent } from './dashboard/map/map.component';
 import { authenticationGuard } from './Guards-Repository/authentication.guard';
 import { leavePageGuard } from './Guards-Repository/leave-page.guard';
 import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
+import { MemberComponent } from './dashboard/member/member.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'members',
+        component: MemberComponent
       },
       {
         path: 'map',

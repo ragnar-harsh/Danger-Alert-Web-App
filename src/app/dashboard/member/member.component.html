@@ -1,15 +1,34 @@
-<button (click)="AddMemeber()">Add Member  <i class="bi bi-person-add"></i></button>
-<div class="card" *ngFor="let Member of Members">
-    <div class="name">{{Member.name}}</div>
-    <div class="phone">{{Member.mobile}}</div>
+<div style="display: grid; place-items: center;">
+  <h1>Add Members</h1>
+  <br>
+  <button style="right: 0; position: absolute;" (click)="AddMemeber()">Add Member  <i class="bi bi-person-add"></i></button>
+  <div class="card" style="display: flex;" *ngFor="let Member of Members; let i = index">
+    
+    <div>
+      <div class="name">{{Member.name}}</div>
+      <br>
+      <div class="phone">{{Member.mobile}}</div>
+    </div>
+    <br>
+    <div (click)="RemoveMember(i)">
+      <i class="bi bi-trash3"></i>
+    </div>
+    
   </div>
 
-  <!-- <div class="card">
-    <div class="name">Jane Smith</div>
-    <div class="phone">555-555-5556</div>
+  <div class="card" *ngIf="addMemeber">
+    <h2> Add Member Detail</h2>
+    <div class="input-field">
+      <input type="text" [(ngModel)]="Name" onkeydown="return /[a-zA-Z ]/i.test(event.key)"  required>
+      <label>Enter your Name</label>
   </div>
-  <div class="card">
-    <div class="name">Alice Johnson</div>
-    <div class="phone">555-555-5557</div>
-  </div> -->
+    <div class="input-field">
+      <input type="number" [(ngModel)]="Mobile" onKeyPress="if(this.value.length>9) return false;" required>
+      <label>Enter your Mobile Number</label>
+    </div>
+
+    <button (click)="SaveMemeber()">Save Memeber  <i class="bi bi-person-add"></i></button>
+  </div>
+</div>
+
   
