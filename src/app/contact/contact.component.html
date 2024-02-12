@@ -48,16 +48,16 @@
                         <h2>Contact Us</h2>
                     
                           <div class="input-field">
-                          <input type="number" ngModel maxlength="10" onKeyPress="if(this.value.length>9) return false;"  required>
+                          <input type="number" ngModel maxlength="10" onKeyPress="if(this.value.length>9) return false;" [(ngModel)]="mobile" required>
                           <label>Enter your Mobile Number</label>
                         </div>
                     
                         <div class="input-field">
-                          <input type="text"   required>
+                          <input type="text" [(ngModel)]="name"  required>
                           <label>Enter your name</label>
                         </div>
                         <div class="input-field">
-                            <textarea rows="4" cols="36"></textarea>
+                            <textarea rows="4" cols="36"  [(ngModel)]="message"></textarea>
                           <label>Enter your Message</label>
                         </div>
                         <div class="forget">

@@ -12,13 +12,16 @@ import { ServicesComponent } from './services/services.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
-// import AOS from 'aos';
-// import { ErroComponent } from './erro/erro.component';
-// import { ReactiveFormsModule } from '@angular/forms';
+import { FactsComponent } from './dashboard/facts/facts.component';
+import { MapComponent } from './dashboard/map/map.component';
+import { ServiceComponent } from './dashboard/service/service.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { AlertModels } from './dashboard/Data-Services/AlertModels.service';
+import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
+import { MemberComponent } from './dashboard/member/member.component';
 
 @NgModule({
   declarations: [
@@ -33,25 +36,20 @@ import { NavigationComponent } from './navigation/navigation.component';
     ErrorComponent,
     FooterComponent,
     NavigationComponent,
-    // AOS,
-    // ErroComponent
+    FactsComponent,
+    MapComponent,
+    ServiceComponent,
+    ProfileComponent,
+    MemberComponent,
   ],
   imports: [
     FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    // ReactiveFormsModule,
-    ToastrModule.forRoot({
-      timeOut: 1000,
-      progressBar: true,
-      positionClass: "toast-top-right",
-      preventDuplicates: true,
-      progressAnimation: 'increasing'
-    })
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AlertModels, resolveGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

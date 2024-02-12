@@ -1,27 +1,24 @@
-import { Component, Input } from '@angular/core';
-// import { NotificationService } from '../notification.service';
-import { ToastrService } from 'ngx-toastr';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
-  styleUrls: ['./services.component.css'],
-  template: '{{sidebr}}'
+  styleUrls: ['./services.component.css']
 })
-export class ServicesComponent {
-  constructor(){
-    console.log(this.sidebr);
+export class ServicesComponent implements OnInit{
+  constructor(private activatedRoute : ActivatedRoute) {
+    
   }
 
-
-  @Input() sidebr : boolean = false;
-
-  // sidebr : boolean = false;
-  side : boolean = false;
-
-  sidebar(){
-    this.side = !this.side;
-    console.log(this.side);
+  ngOnInit(): void {
+    this.activatedRoute.fragment.subscribe((value) => 
+    {
+      this.jumpTo(value);
+    });
+  }
+  jumpTo(section : any){
+    document.getElementById(section)?.scrollIntoView({behavior: 'smooth'});
   }
   
   

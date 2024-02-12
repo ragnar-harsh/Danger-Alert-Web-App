@@ -1,11 +1,13 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 
 .bgr{
+    font-family: "Open Sans", sans-serif;
+    background-color: rgb(1, 25, 36);
     color: white;
-    font-family: Calibri;
     font-size: 18px;
     font-style: bold;
-    background-color: rgb(1, 25, 36);
+    /* max-width: 100%;
+    overflow-x: hidden; */
 }
 nav{
     background-color: black;
@@ -64,6 +66,26 @@ button:active{
     color: white;
     .icon{
         color: rgb(54, 184, 228);
+    }
+}
+
+.spinner{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 5px solid white;
+    border-top-color: blue;
+    animation: spin 1s linear infinite;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+}
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
     }
 }
 
