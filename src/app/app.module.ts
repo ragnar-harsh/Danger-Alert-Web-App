@@ -12,13 +12,9 @@ import { ServicesComponent } from './services/services.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
-// import AOS from 'aos';
-// import { ErroComponent } from './erro/erro.component';
-// import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,23 +29,13 @@ import { NavigationComponent } from './navigation/navigation.component';
     ErrorComponent,
     FooterComponent,
     NavigationComponent,
-    // AOS,
-    // ErroComponent
   ],
   imports: [
     FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    // ReactiveFormsModule,
-    ToastrModule.forRoot({
-      timeOut: 1000,
-      progressBar: true,
-      positionClass: "toast-top-right",
-      preventDuplicates: true,
-      progressAnimation: 'increasing'
-    })
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

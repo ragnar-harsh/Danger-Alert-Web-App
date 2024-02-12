@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-// import { NotificationService } from '../notification.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-services',

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as Aos from 'aos';
 
 @Component({
   selector: 'app-about',
@@ -8,7 +7,6 @@ import * as Aos from 'aos';
 })
 export class AboutComponent {
   constructor() {
-    Aos.init();
     
   }
 

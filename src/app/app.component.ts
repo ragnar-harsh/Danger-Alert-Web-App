@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { ServicesComponent } from './services/services.component';
 import * as Aos from 'aos';
 
