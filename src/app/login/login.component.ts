@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MyHttpServiceService } from '../Service/my-http-service.service';
+import { MyHttpServiceService } from '../Service-Repository/my-http-service.service';
 // import { HttpServiceService } from '../http-service.service';
 // import AOS from 'aos';
 

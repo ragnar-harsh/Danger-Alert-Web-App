@@ -15,6 +15,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { FactsComponent } from './dashboard/facts/facts.component';
+import { MapComponent } from './dashboard/map/map.component';
+import { ServiceComponent } from './dashboard/service/service.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { AlertModels } from './dashboard/Data-Services/AlertModels.service';
+import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
+import { MemberComponent } from './dashboard/member/member.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +36,11 @@ import { NavigationComponent } from './navigation/navigation.component';
     ErrorComponent,
     FooterComponent,
     NavigationComponent,
+    FactsComponent,
+    MapComponent,
+    ServiceComponent,
+    ProfileComponent,
+    MemberComponent,
   ],
   imports: [
     FormsModule,
@@ -37,7 +49,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AlertModels, resolveGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

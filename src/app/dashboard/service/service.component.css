@@ -1,0 +1,121 @@
+  /*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+/* body {
+    font-family: "Open Sans", sans-serif;
+    color: #272829;
+  } */
+  
+  a {
+    color: #149ddd;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #37b3ed;
+    text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+  .section-title {
+    padding-bottom: 30px;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #65c5f1;
+  }
+  
+  .section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #149ddd;
+    bottom: 0;
+    left: 0;
+  }
+
+
+  /*--------------------------------------------------------------
+  # Services
+  --------------------------------------------------------------*/
+  .services .icon-box {
+    margin-bottom: 20px;
+  }
+  
+  .services .icon {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    background: #149ddd;
+    border-radius: 50%;
+    transition: 0.5s;
+    border: 1px solid #149ddd;
+  }
+  
+  .services .icon i {
+    color: #fff;
+    font-size: 24px;
+    line-height: 0;
+  }
+  
+  .services .icon-box:hover .icon {
+    background: #fff;
+  }
+  
+  .services .icon-box:hover .icon i {
+    color: #149ddd;
+  }
+  
+  .services .title {
+    margin-left: 80px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .services .title a {
+    color: #ffffff;
+  }
+  
+  .services .title a:hover {
+    color: #149ddd;
+  }
+  
+  .services .description {
+    margin-left: 80px;
+    line-height: 24px;
+    font-size: 14px;
+  }
+
+
+  #padding-button{
+    padding: 20px 10px 10px 20px;
+  }
+
+  .alert-button{
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgb(0, 0, 0);
+  }
+
+  .alert-button:hover {
+    transform: translateY(-20px);
+    cursor: pointer;
+  }

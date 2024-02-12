@@ -8,27 +8,51 @@ import { ServicesComponent } from './services/services.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
+import { ServiceComponent } from './dashboard/service/service.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { MapComponent } from './dashboard/map/map.component';
+import { authenticationGuard } from './Guards-Repository/authentication.guard';
+import { leavePageGuard } from './Guards-Repository/leave-page.guard';
+import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
-
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
-
+    component: DashboardComponent,
+    canActivate : [authenticationGuard],
+    resolve: {Alerts : resolveGuard},
+    children: [
+      {
+        path: '',
+        component: ServiceComponent
+        
+      },
+      {
+        path: 'service',
+        component: ServiceComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'map',
+        component: MapComponent
+      }
+    ]
   },
   {
     path: 'contact',
-    component: ContactComponent
-
+    component: ContactComponent,
+    canDeactivate: [leavePageGuard]
   },
   {
     path: 'login',
     component: LoginComponent
-
   },
   {
     path: 'about',
@@ -37,27 +61,26 @@ const routes: Routes = [
   {
     path: 'services',
     component: ServicesComponent
-
   },
+  
   {
     path: '',
-    component: AboutComponent
-
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
     path: 'signup',
-    component: SignUpComponent
-
+    component: SignUpComponent,
+    canDeactivate: [leavePageGuard]
   },
   {
     path: '**',
     component: ErrorComponent
   }
-
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing : true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

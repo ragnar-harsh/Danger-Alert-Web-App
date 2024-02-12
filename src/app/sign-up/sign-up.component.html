@@ -1,245 +1,72 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 <br>
-<body>
+<div class="body">
     
-    <div data-aos="flip-right" data-aos-duration="2000"  class="wrapper">
-      <h2>Registration</h2>
+    <div data-aos="flip-right" data-aos-duration="1500"  class="wrapper">
+        <h2>Registration</h2>
+        <div class="input-field" >
+            <label for="type" *ngIf="!AccountType">Account Type</label>
+            <select [(ngModel)]="AccountType" name="Type" id = "type" required>
+                <option value="User">Service User</option>
+                <option value="Provider">Service Provider</option>
+            </select>
+        </div>
+
+        <div *ngIf="AccountType == 'Provider'" class="input-field" >
+            <label for="department" *ngIf="!Department">Department</label>
+            <select [(ngModel)]="Department" name="Department" id = "department" required>
+                <option value="medical">Medical Department</option>
+                <option value="police">Police Department</option>
+                <option value="fire">Fire Department</option>
+                <option value="traffic">Accident Department</option>
+            </select>
+        </div>
 
         <div class="input-field">
-        <input type="text" name="uname" onkeydown="return /[a-zA-Z ]/i.test(event.key)" [(ngModel)]="UserName" required>
-        <label>Enter your Name</label>
+            <input type="text" name="uname" onkeydown="return /[a-zA-Z ]/i.test(event.key)" [(ngModel)]="UserName" required>
+            <label>Enter your Name</label>
         </div>
         <div class="input-field">
             <input type="number" [(ngModel)]="UserAge" required>
             <label>Enter your Age</label>
-          </div>
+        </div>
 
-          <div class="input-field">
+        <div class="input-field">
             <input type="email" ngModel email="true" [(ngModel)]="UserEmail" required>
             <label>Enter Email</label>
-          </div>
-          <div class="input-field">
+        </div>
+        <div class="input-field" >
+            <label for="gender" *ngIf="!UserGender">Gender</label>
             <select [(ngModel)]="UserGender" name="Gender" id = "gender" required>
-                <option value="">Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
+                
             </select>
-          </div>
+        </div>
           
         <div class="input-field">
-        <input type="number" ngModel maxlength="10" onKeyPress="if(this.value.length>10) return false;" [(ngModel)]="UserMobile"  required>
-        <label>Enter your Mobile Number</label>
-      </div>
-      <button type="submit" (click) = "GenerateOtp()">Get OTP</button>
-
-      <br>
-      <div class="input-field">
-        <input type="password"  ngModel maxlength="4" [(ngModel)]="EnteredOTP" required>
-        <label>Enter your OTP</label>
-      </div>
-      <div class="forget">
-        <label for="remember">
-          <input type="checkbox" id="remember">
-          <p>Remember me</p>
-        </label>
-        <!-- <a href="#">Forgot password?</a> -->
-      </div>
-      <button type="submit" (click) = "VerifyOTP()" >Register</button>
-      <div class="register">
-        <p>Already Registered? Login Now! <button type="submit" (click)="GoToLoginPage()">Login</button></p>
-      </div>
-      {{sentOtp}}
-  </div>
-</body>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<br><br><br>
-
-
-
-
-<div class="ccnntr">
-
-    <br>
-
-    <div    >
-
-        <h1 >
-           <span style="font-weight: bold;">Register Yourself</span> 
-        </h1>
-    </div>
-    <br>
-    <div>
-        <div>
-           <input type="text"  name="uname" onkeydown="return /[a-zA-Z ]/i.test(event.key)" [(ngModel)]="UserName" placeholder="Enter Name" required #ref1/>
+            <input type="number" onKeyPress="if(this.value.length>9) return false;" [(ngModel)]="UserMobile"  required>
+            <label>Enter your Mobile Number</label>
         </div>
-        <div>
-            <input type="number" name="age" [(ngModel)]="UserAge" placeholder="Enter Age" required #ref2/>
-        </div>
-        <div>
-            <input type="email" name="email" [(ngModel)]="UserEmail" placeholder="Enter Email Address" required #ref3/>
-        </div>
-        <div>
-            <select style="width: 75%;" class="inpt" [(ngModel)]="UserGender" name="Gender" id = "gender" required #ref4>
-                <option value="">Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
-        <div>
-            <span>
-                <select style="width: 18%;" class="inpt" [(ngModel)]="UserCountryCode" name="Country" id="countryCode" required  #ref5>
-                    <option value="">Select</option>
-                    <option value="+91">India(+91)</option>
-                    <option value="+1">USA(+1)</option>
-                    <option value="+44">UK(+44)</option>
-                    <option value="+86">China(+86)</option>
-                    <option value="+52">Mexico(+52)</option>
-                </select>
-            </span>
-           
-            <span>
-                <input style="width: 53%;" type="number" [(ngModel)]="UserMobile" ngModel maxlength="10" name="mobno." placeholder="Enter Mobile No" required #ref6/>
-            </span>
-            
-  
-        </div>
-        <div>
-            <button (click) = "GenerateOtp()">
-                Get OTP
-            </button>
-        </div>
-        <div>
-            <input type="text" ngModel maxlength="4"  dissabled name="otp" [(ngModel)]="EnteredOTP" placeholder="Enter OTP" required #ref8/>
-        </div>
-        <div>
-            <button (click) = "VerifyOTP()">
-                Sign Up
-            </button>
-        </div><br><br>
-        <div>
-            <span style="color: White;">
-               Already Registered? Login Now!
-            </span>
-            <span>
-                <button value="login" (click)="GoToLoginPage()">
-                    Login
-                </button>
-            </span>
-        </div>
+        <button type="submit" (click) = "GenerateOtp()">Get OTP</button>
 
-        <br><br>
+        <br>
+        <div class="input-field">
+            <input type="password"  ngModel maxlength="4" [(ngModel)]="EnteredOTP" required>
+            <label>Enter your OTP</label>
+        </div>
+        <div class="forget">
+            <label for="remember">
+                <input type="checkbox" id="remember">
+                <p>Remember me</p>
+            </label>
+            <!-- <a href="#">Forgot password?</a> -->
+        </div>
+        <button type="submit" (click) = "VerifyOTP()" >Register</button>
+        <div class="register">
+            <p>Already Registered? Login Now! <button type="submit" (click)="GoToLoginPage()">Login</button></p>
+        </div>
         {{sentOtp}}
+
     </div>
-</div> -->
-        <!-- <ul>
-            <li *ngFor="let x of sentOtp">{{x}} : {{x}}</li>
-        </ul> -->
-       
-        <!-- <div>
-            hello
-        </div> -->
-    
-<!-- </form> -->
-
-
-
+</div>
+<br>

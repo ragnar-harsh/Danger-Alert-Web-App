@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { MyHttpServiceService } from '../Service/my-http-service.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MyHttpServiceService } from '../Service-Repository/my-http-service.service';
 
 
 @Component({
@@ -10,27 +9,18 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./sign-up.component.css']
 })
 
-// @Input()
-// maxLength : number;
-
-
-
 export class SignUpComponent {
   UserName : any ;
   UserAge : any;
   UserEmail : any;
   UserGender : any;
   UserCountryCode : any;
-  UserMobno : any;
   UserMobile : any;
   EnteredOTP : any;
   sentOtp : any;
-  FormBuilder: any;
-
-  // form: FormGroup = new FormGroup( {
-  //   UserMobile : new FormControl('',
-  //   [Validators.required, Validators.minLength(10)])
-  // });
+  AccountType : any;
+  Department : any;
+  
   constructor(private route: Router, private apiService : MyHttpServiceService ) {}
 
   GenerateOtp(){
@@ -57,7 +47,13 @@ export class SignUpComponent {
 
   }
 
-
+  canExit(){
+    if(this.UserEmail || this.UserGender || this.UserMobile || this.UserMobile || this.UserName){
+      return confirm("All the data will be Lost!! Are you sure to exit??");
+    }else{
+      return true;
+    }
+  }
 
 
   GoToLoginPage(){

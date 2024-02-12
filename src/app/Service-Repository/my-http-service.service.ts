@@ -14,7 +14,7 @@ const httpOptions = {
 
 
 export class MyHttpServiceService {
-  apiURL = 'apilocal/';
+  apiURL = 'apilocal/AuthenticationController/';
   constructor( private http : HttpClient) { }
 
   getUserr() : Observable<any[]>{
@@ -24,9 +24,6 @@ export class MyHttpServiceService {
 
   genSignupOTP(mob : any) : Observable<any[]>{
     var URL = `${this.apiURL}genSignupOtp`+`?mob=`+mob;
-    // let URLBodyparams = new URLSearchParams();
-    // URLBodyparams.append('mobile', mob);
-    // const params = new HttpParams({fromString: 'mobile=mob'});
     console.log(URL);
     return this.http.get<any>(URL);
   }
@@ -51,7 +48,7 @@ export class MyHttpServiceService {
     URLBodyparams.append('email', email);
     URLBodyparams.append('mobile', mobile);
     URLBodyparams.append('gender', gender);
-    URLBodyparams.append('Otp', otp);
+    URLBodyparams.append('otp', otp);
 
     return this.http.post<any>(URL, URLBodyparams, httpOptions);
   }

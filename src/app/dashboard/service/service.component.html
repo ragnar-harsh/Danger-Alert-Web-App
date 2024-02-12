@@ -1,0 +1,17 @@
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Services</h2>
+      <p>Raise Emergency Signal and Request Help</p>
+    </div>
+    <div class="row d-flex justify-content-center" *ngFor="let alert of Alerts" >
+        <div class="col-lg-4 col-md-6 icon-box alert-button" data-aos="fade-up" (click)="RaiseAlert()">
+          <div id="padding-button">
+            <div class="icon"><i class="bi {{alert.icon}}"></i></div>
+            <h4 class="title"><a href="">{{alert.category}}</a></h4>
+            <p class="description">{{alert.message}}</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
