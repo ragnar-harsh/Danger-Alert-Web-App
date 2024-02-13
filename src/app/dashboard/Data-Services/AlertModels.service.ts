@@ -1,3 +1,9 @@
+interface customAlertModel{
+    icon : string;
+    category: string;
+    message: string;
+  }
+
 export class AlertModels{
     Alerts = [
         {   icon: 'bi-heart-pulse-fill',
@@ -29,6 +35,14 @@ export class AlertModels{
             mobile : 'mobile2'
         }
     ]
+
+    CustomAlerts: customAlertModel[] = [
+        {
+           icon: 'bi-shield-check',
+            category: 'Report Criminal Activity',
+            message: 'Report Crime and Get help from nearest Police Station'
+        }
+    ];
 
     getAllAlerts(): any{
         const AllAlerts = new Promise((resolve, reject) => {

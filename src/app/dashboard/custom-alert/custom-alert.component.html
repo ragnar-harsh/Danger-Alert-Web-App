@@ -1,0 +1,42 @@
+
+
+  <div>
+    <div class="section-title">
+      <h2>Create Your Custom Alerts</h2>
+    </div>
+    <br>
+    <button style="right: 0; position: absolute;" (click)="AddAlert()">Add Alert  <i class="bi bi-person-add"></i></button>
+    <div class="card" style="display: flex;" *ngFor="let alert of customAlerts; let i = index">
+      
+      <div>
+        <div class="name"><i class="bi bi-exclamation-diamond"></i> {{alert.category}}</div>
+        <br>
+        <div class="phone"><i class="bi bi-chat-right-text-fill"></i> {{alert.message}}</div>
+      </div>
+      <br>
+      <div (click)="RemoveAlert(i)">
+        <i class="bi bi-trash3"></i>
+      </div>
+      
+    </div>
+  
+    <div *ngIf="createAlert" class="form card">
+      <div class="card_header">
+       
+        <h1 class="form_heading">Create Alert Message</h1>
+      </div>
+      <div class="field">
+        <label for="username">Create Alert</label>
+        <input class="input" [(ngModel)]="AlertName" type="text" placeholder="Alert Name">
+      </div>
+      <div class="field">
+        <label for="password">Create Alert Message</label>
+        <textarea class="input" [(ngModel)]="AlertMessage" type="text" placeholder="Alert Message" rows="5" cols="50">
+       </textarea> 
+      </div>
+      
+      <div class="field">
+        <button (click)="CreateYourAlert()" class="button">Create</button>
+      </div>
+    </div>
+  </div>

@@ -15,6 +15,7 @@ import { authenticationGuard } from './Guards-Repository/authentication.guard';
 import { leavePageGuard } from './Guards-Repository/leave-page.guard';
 import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
 import { MemberComponent } from './dashboard/member/member.component';
+import { CustomAlertComponent } from './dashboard/custom-alert/custom-alert.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,14 @@ const routes: Routes = [
         component: MemberComponent
       },
       {
+        path: 'customAlerts',
+        component: CustomAlertComponent
+      },
+      // {
+      //   path: 'logout',
+      //   component: LoginComponent
+      // },
+      {
         path: 'map',
         component: MapComponent
       }
@@ -57,6 +66,10 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'logout',
     component: LoginComponent
   },
   {
@@ -85,7 +98,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing : true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+//, {enableTracing : true}

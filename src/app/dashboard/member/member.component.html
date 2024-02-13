@@ -1,13 +1,15 @@
 <div style="display: grid; place-items: center;">
-  <h1>Add Members</h1>
+  <div class="section-title">
+    <h2>Add Memebers</h2>
+  </div>
   <br>
   <button style="right: 0; position: absolute;" (click)="AddMemeber()">Add Member  <i class="bi bi-person-add"></i></button>
   <div class="card" style="display: flex;" *ngFor="let Member of Members; let i = index">
     
     <div>
-      <div class="name">{{Member.name}}</div>
+      <div class="name"><i class="bi bi-person-check"></i> {{Member.name}}</div>
       <br>
-      <div class="phone">{{Member.mobile}}</div>
+      <div class="phone"><i class="bi bi-telephone"></i> {{Member.mobile}}</div>
     </div>
     <br>
     <div (click)="RemoveMember(i)">
