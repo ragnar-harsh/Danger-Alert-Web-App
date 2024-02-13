@@ -1,0 +1,100 @@
+
+h1{
+  color: rgb(49, 173, 211);
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #65c5f1;
+}
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #149ddd;
+  bottom: 0;
+  left: 0;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 10px;
+  width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: none;
+}
+.name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: white;
+}
+.phone {
+  font-size: 18px;
+  color: white;
+}
+  
+  .card_header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .field {
+    padding-bottom: 10px;
+  }
+  
+  .input {
+    border-radius: 5px;
+    background-color: #e9e9f7;
+    padding: 5px;
+    width: 100%;
+    color: #7a7ab3;
+    border: 1px solid #dadaf7
+  }
+  
+  .input:focus-visible {
+    outline: 1px solid #aeaed6;
+  }
+  
+  .input::placeholder {
+    color: #bcbcdf;
+  }
+  
+  label {
+    color: #B2BAC8;
+    font-size: 14px;
+    display: block;
+    padding-bottom: 4px;
+  }
+  
+  button {
+    background-color: #7878bd;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 7px 12px;
+    height: auto;
+    font-weight: 500;
+    color: white;
+    border: none;
+  }
+  
+  button:hover {
+    background-color: #5f5f9c;
+  }
+
+  i{
+    color: white;
+  }
+
+  i:hover{
+    color: #03a9f4;
+    cursor: pointer;
+  }

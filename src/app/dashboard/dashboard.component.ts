@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
 
 
-  sidebar: any = false;
+  sidebar: any = true;
 
   togglebar(){
     this.sidebar = !this.sidebar;
