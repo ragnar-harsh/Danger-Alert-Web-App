@@ -23,6 +23,7 @@ import { AlertModels } from './dashboard/Data-Services/AlertModels.service';
 import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
 import { MemberComponent } from './dashboard/member/member.component';
 import { CustomAlertComponent } from './dashboard/custom-alert/custom-alert.component';
+import { UserDetailService } from './dashboard/Data-Services/UserDetail.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { CustomAlertComponent } from './dashboard/custom-alert/custom-alert.comp
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [AlertModels, resolveGuard],
+  providers: [AlertModels, resolveGuard, UserDetailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
