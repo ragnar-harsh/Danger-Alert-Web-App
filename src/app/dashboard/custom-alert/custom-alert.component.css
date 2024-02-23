@@ -30,6 +30,8 @@ h1{
   width: 500px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: none;
+  color: white;
+  text-align: center;
 }
 .name {
   font-size: 20px;

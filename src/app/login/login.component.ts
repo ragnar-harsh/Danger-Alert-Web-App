@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MyHttpServiceService } from '../Service-Repository/my-http-service.service';
-// import { HttpServiceService } from '../http-service.service';
-// import AOS from 'aos';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidator } from '../Helper-Repository/FormValidator';
+import { ToastrService } from 'ngx-toastr';
+import { UserStoreService } from '../Service-Repository/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -11,127 +12,82 @@ import { MyHttpServiceService } from '../Service-Repository/my-http-service.serv
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   UserMobile : any;
   EnteredOTP: any ;
 
   usersList1 :any=[];
   sentOtp: any;
+  loginForm!: FormGroup;
  
-  constructor(private router: Router, private apiService : MyHttpServiceService ){
+  constructor(private router: Router, private apiService : MyHttpServiceService,
+    private formBuilder : FormBuilder, private toastr : ToastrService,
+    private userStore: UserStoreService ){
 
     this.apiService.getUserr().subscribe((data: any[]) => {
       this.usersList1 = data;
     })
   }
 
+  
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      UserMobile : ['', Validators.required],
+      EnteredOTP : ['', Validators.required]
+    });
+
+    this.getLocation();
+  }
+
+
+  getLocation(): void{
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=>{
+          const longitude = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          console.log(longitude, latitude);
+        });
+    } else {
+       console.log("No support for geolocation")
+    }
+  }
+
+
+  //Generate OTP
+
   GenerateOtpLogin(){
     this.apiService.genLoginOTP(this.UserMobile).subscribe((data : any) =>{
-      this.sentOtp = data;
+      this.toastr.info(data.message);
+      this.sentOtp = data.otp;
     },
-    (error) => {alert("Invalid Mobile Number");}
-    
+    (error) => {this.toastr.error("Please Enter the correct Mobile NO.", "Incorrect Mobile Number", { easeTime : 1000});}
     );
   }
-
-  verifyLoginOtp(){
-    this.apiService.verifyLogin(this.UserMobile, this.EnteredOTP).subscribe(
-      (response) => {
-        this.router.navigate(['dashboard']);
-      },
-      (error) => {alert("Incorrect  OTP");}
-    );
-    
-
-    console.log("OTP Verified!");
-  }
-
+  
   GoToSignUpPage(){
     this.router.navigate(["./signup"])
   }
 
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  private  apiService :HttpServiceService )  {
-
-    // this.apiService.getUser().subscribe((data: any[]) => {
-    //   console.log(data ,' From API call');
-    //   this.usersList = data;
-
-    // });
-  
-
-  // ngOnInit(){
-  //   AOS.init();
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ngOnInit() {
-
-  // }
-
-  // status : boolean = true ;
-
-  // ChangePage(clickedItem: any){
-  //   // console.log(clickedItem);
-  //   if(clickedItem.target.value == "signup"){
-  //     this.status = false;
-
-  //   }
-  //   else{
-  //     this.status = true;
-  //   }
+//Verify Login 
+  verifyLoginOtp(){
+    if(this.loginForm.valid){
+      this.apiService.verifyLogin(this.UserMobile, this.EnteredOTP).subscribe(
+        (response: any) => {
+          this.apiService.storeToken(response.token);
+          const tokenPayload = this.apiService.decodedToken();
+          this.userStore.setFullNameForStore(tokenPayload.unique_name);
+          this.userStore.setRoleForStore(tokenPayload.role);
+          this.userStore.setMobileForStore(tokenPayload.certserialnumber);
+          this.toastr.success("Your OTP verified Successfully", response.message, { easeTime : 1000});
+          this.router.navigate(['dashboard']);
+        },
+        (error: any) => { this.toastr.error("Incorrect OTP");}
+      );
+    }
+    else{
+      FormValidator.ValidataAllFormFields(this.loginForm);
+      this.toastr.error("Please fill the Form Correctly", "Invalid Details", { easeTime : 1000});
+    }
     
-  // }
-
-  // genOTP(CountryCode: any, Mobno: any){
-  //   // this.UserMobNo = this.CountryCode.target.value + this.Mobno.target.value;
-  //   // console.log(CountryCode.value);
-  //   // console.log(Mobno.value);
-  //   this.UserMobNo = CountryCode.value + "" + Mobno.value ;
-  //   console.log(this.UserMobNo);
-  // }
-
-
-
-  // VerifyLogin(EnteredOTP1: any){
-  //   console.log('before post');
-  //   this.apiService.verifyloginOTP("98989898898",this.EnteredOTP).subscribe();
-  //     // {console.log(res, 'From Post response');}); 
-  //   console.log('After post');  
-  //   console.log(this.EnteredOTP);
-  // }
-
-
+  }
+}

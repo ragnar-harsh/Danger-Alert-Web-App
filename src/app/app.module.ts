@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { ServicesComponent } from './services/services.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorComponent } from './error/error.component';
@@ -24,6 +24,9 @@ import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
 import { MemberComponent } from './dashboard/member/member.component';
 import { CustomAlertComponent } from './dashboard/custom-alert/custom-alert.component';
 import { UserDetailService } from './dashboard/Data-Services/UserDetail.service';
+import { TokenInterceptor } from './Interceptors/token.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { DashboardService } from './Service-Repository/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -50,9 +53,12 @@ import { UserDetailService } from './dashboard/Data-Services/UserDetail.service'
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [AlertModels, resolveGuard, UserDetailService],
+  providers: [AlertModels, resolveGuard, UserDetailService, 
+     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

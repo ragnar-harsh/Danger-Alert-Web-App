@@ -78,6 +78,9 @@ a {
   .about .content p:last-child {
     margin-bottom: 0;
   }
+
+
+/* Edit Button */
   .editBtn {
     width: 55px;
     height: 55px;
@@ -90,8 +93,8 @@ a {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
     cursor: pointer;
     position: absolute;
-    top: 10;
-    right: 0;
+    top: 150px;
+    right: 10px;
     overflow: hidden;
     transition: all 0.3s;
   }
@@ -143,6 +146,7 @@ a {
     left: 0px;
     transform-origin: right;
   }
+
 
   input{
     background: none;

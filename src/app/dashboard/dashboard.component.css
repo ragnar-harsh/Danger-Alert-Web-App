@@ -53,7 +53,7 @@ body {
 
   #header {
     position: fixed;
-    top: 40px;
+    /* top: 40px; */
     width: 300px;
     transition: all ease-in-out 0.5s;
     z-index: 9;
@@ -61,6 +61,11 @@ body {
     padding: 0 15px;
     background: #040b14;
     height: 100vh;
+  }
+
+  #name-text{
+    font-size: medium;
+    text-align: center;
   }
   
 
@@ -126,6 +131,10 @@ body {
   
     #main {
       margin-left: 0;
+      /* max-width: 100%;
+      overflow-x: hidden;
+      max-height: 100%;
+      overflow-y: hidden; */
     }
   
     .container,
@@ -186,4 +195,87 @@ body {
   .nav-menu li:hover>a i {
     color: #149ddd;
   }
+
+
+  /* Message & Inbox */
+
+
+
+  .inbox{
+    /* border: 2px solid red; */
+    height: 80vh;
+    width: 90vh;
+    margin-top: 6%;
+    margin-left: 35%;
+    position: fixed;
+    background-color: #040b14;
+    border-radius: 4%;
+  }
+  .body-section{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100000000000;
+    backdrop-filter: blur(10px);
+  }
+
+
+
+  /* message Icon */
+  
+  .count {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background-color: #e74c3c;
+    color: #fff; 
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 50%;
+  }
+  
+
+
+  .icon-box {
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+  }
+  
+  .icon {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    background: #149ddd;
+    border-radius: 50%;
+    transition: 0.5s;
+    border: 1px solid #149ddd;
+  }
+  
+  .icon i {
+    color: #fff;
+    font-size: 24px;
+    line-height: 0;
+  }
+  
+  .icon-box:hover .icon {
+    background: #fff;
+    cursor: pointer;
+  }
+  
+  .icon-box:hover .icon i {
+    color: #149ddd;
+  }
+
+  .pos-close{
+    top: 20px;
+    right: 20px;
+  }
+  
   

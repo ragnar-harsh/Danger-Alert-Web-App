@@ -1,21 +1,19 @@
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-</head>
+
 
 
 <body class="bgr">
-  <app-navigation></app-navigation>
+  <!-- <ng-container *ngIf="isLoggedIn">  -->
+    <app-navigation *ngIf="!isLoggedIn"></app-navigation> 
+  <!-- </ng-container> -->
+  
 
 
-  <div style="margin-top: 7.8vh;  "> 
-    <router-outlet></router-outlet>
+  <div [ngStyle]="{'margin-top': !isLoggedIn ? '7.8vh' : '0vh' }"> 
+    <!-- <div> -->
     <div class="spinner" *ngIf="displayLoadingIndicator"></div>
+    <router-outlet></router-outlet>
   </div>
 
 
-  <app-footer></app-footer>
+  <app-footer *ngIf="!isLoggedIn"></app-footer>
 </body>

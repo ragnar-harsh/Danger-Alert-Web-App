@@ -1,17 +1,24 @@
+<div style="display: grid; place-items: center;">
+  <div data-aos="fade-right" class="section-title">
+    <h2>Create Your Custom Alerts</h2>
+  </div>
+  <br>
+  <button style="right: 8px; position: absolute;" (click)="AddAlert()">Add Alert  <i class="bi bi-person-add"></i></button>
+  <div class="card" *ngIf="CustomAlerts[0].id == -1 && CustomAlerts[1].id == -1 && CustomAlerts[2].id == -1">
+    <br><br> No Custom Alerts Created.
+    <br><br><br><br>
+    Please Create Your Custom Alerts by Clicking Add Alert Button
+    <br><br><br><br>
+  </div>
 
 
-  <div>
-    <div class="section-title">
-      <h2>Create Your Custom Alerts</h2>
-    </div>
-    <br>
-    <button style="right: 0; position: absolute;" (click)="AddAlert()">Add Alert  <i class="bi bi-person-add"></i></button>
-    <div class="card" style="display: flex;" *ngFor="let alert of customAlerts; let i = index">
-      
+  <ng-container *ngFor="let alert of CustomAlerts; let i = index">
+    <div *ngIf="alert.id !== -1" data-aos="fade-left" class="card" style="display: flex;" >
+    
       <div>
-        <div class="name"><i class="bi bi-exclamation-diamond"></i> {{alert.category}}</div>
+        <div class="name"><i class="bi bi-exclamation-diamond"></i> &nbsp;&nbsp; {{alert.title}}</div>
         <br>
-        <div class="phone"><i class="bi bi-chat-right-text-fill"></i> {{alert.message}}</div>
+        <div class="phone"><i class="bi bi-chat-right-text-fill"></i> &nbsp;&nbsp; {{alert.message}}</div>
       </div>
       <br>
       <div (click)="RemoveAlert(i)">
@@ -19,24 +26,27 @@
       </div>
       
     </div>
+  </ng-container>
+
   
-    <div *ngIf="createAlert" class="form card">
-      <div class="card_header">
-       
-        <h1 class="form_heading">Create Alert Message</h1>
-      </div>
-      <div class="field">
-        <label for="username">Create Alert</label>
-        <input class="input" [(ngModel)]="AlertName" type="text" placeholder="Alert Name">
-      </div>
-      <div class="field">
-        <label for="password">Create Alert Message</label>
-        <textarea class="input" [(ngModel)]="AlertMessage" type="text" placeholder="Alert Message" rows="5" cols="50">
-       </textarea> 
-      </div>
-      
-      <div class="field">
-        <button (click)="CreateYourAlert()" class="button">Create</button>
-      </div>
+
+  <div data-aos="fade-right" *ngIf="createAlert" class="form card">
+    <div class="card_header">
+     
+      <h1 class="form_heading">Create Alert Message</h1>
+    </div>
+    <div class="field">
+      <label for="username">Create Alert</label>
+      <input class="input" [(ngModel)]="AlertName" type="text" placeholder="Alert Name">
+    </div>
+    <div class="field">
+      <label for="password">Create Alert Message</label>
+      <textarea class="input" [(ngModel)]="AlertMessage" type="text" placeholder="Alert Message" rows="5" cols="50">
+     </textarea> 
+    </div>
+    
+    <div class="field">
+      <button (click)="CreateYourAlert()" class="button">Create</button>
     </div>
   </div>
+</div>

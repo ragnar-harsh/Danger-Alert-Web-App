@@ -1,154 +1,38 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+<div class="body">
+
+  <form [formGroup]="loginForm">
     <div data-aos="flip-right" data-aos-duration="2000" class="wrapper">
       <h2>Login</h2>
-        <div class="input-field">
-        <input type="number" ngModel maxlength="10" onKeyPress="if(this.value.length>9) return false;" [(ngModel)]="UserMobile" required>
+
+      <div class="input-field" [class.error]="loginForm.controls['UserMobile'].dirty && loginForm.hasError('required', 'UserMobile')">
+        <input formControlName="UserMobile" type="number" ngModel maxlength="10" onKeyPress="if(this.value.length>9) return false;" [(ngModel)]="UserMobile" required>
         <label>Enter your Mobile Number</label>
       </div>
-      <button type="submit" (click)="GenerateOtpLogin()">Get OTP</button>
-
+      <small *ngIf="loginForm.controls['UserMobile'].dirty && loginForm.hasError('required', 'UserMobile')" class="text-danger">*This field is Required<br></small>
+      <button  type="submit" (click)="GenerateOtpLogin()">Get OTP</button>
       <br>
-      <div class="input-field">
-        <input type="password"  ngModel maxlength="4"  [(ngModel)]="EnteredOTP" required>
+
+      <div class="input-field" [class.error]="loginForm.controls['UserMobile'].dirty && loginForm.hasError('required', 'UserMobile')">
+        <input formControlName="EnteredOTP" type="password"  ngModel maxlength="4"  [(ngModel)]="EnteredOTP" required>
         <label>Enter your OTP</label>
+        <!-- <span class="fa fa-eye-slash"></span> -->
       </div>
+      <small *ngIf="loginForm.controls['EnteredOTP'].dirty && loginForm.hasError('required', 'EnteredOTP')" class="text-danger">*This field is Required</small>
+      
       <div class="forget">
         <label for="remember">
           <input type="checkbox" id="remember">
           <p>Remember me</p>
         </label>
-        <!-- <a href="#">Forgot password?</a> -->
       </div>
       <button type="submit" (click)="verifyLoginOtp()">Log In</button>
+
       <div class="register">
         <p>Don't have an account? <button value="signup" (click)="GoToSignUpPage()">
             Sign Up
         </button></p>
       </div>
       {{sentOtp}}
-  </div>
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <ul>
-                <li *ngFor="let usr of usersList">{{ usr.name }}:{{usr.mobile}}</li>
-            </ul> -->
-            <!-- <ul>
-                <li *ngFor="let x of usersList1">{{x.name}} : {{x.mobile}}</li>
-            </ul> -->
-<!-- <br><br>
-<br>
-
-<div class="cntrr" >
-    <br>
-        <div>
-                <h1 style="font-weight: bold;">LOGIN</h1>
-            </div><br><br>
-
-            
-
-            <div >
-                <div>
-                    <h3>
-                        Enter Mobile No.
-                    </h3>
-                </div><br>
-                <div>
-                    <span>
-                        <select class="inpt" name="Country" id="countryCode"  #ref1>
-                            <option value="">Select</option>
-                            <option value="+91">India(+91)</option>
-                            <option value="+1">USA(+1)</option>
-                            <option value="+44">UK(+44)</option>
-                            <option value="+86">China(+86)</option>
-                            <option value="+52">Mexico(+52)</option>
-                        </select>
-                    </span>
-                    <span>
-                        <input type="number" ngModel maxlength="10" name="mobno." [(ngModel)]="UserMobile" placeholder="Enter Mobile No"  #ref2/>
-                    </span>
-        
-                   
-                    
-                   
-                </div>
-                <br>
-                <div>
-                    <button (click)="GenerateOtpLogin()">
-                        Get OTP
-                    </button>
-                </div>
-                <br>
-                <div>
-                    <input type="text" ngModel maxlength="4"  dissabled name="otp"  [(ngModel)]="EnteredOTP" placeholder="Enter OTP" #ref3/>
-                </div>
-                <br>
-                <div>
-                    <button (click)="verifyLoginOtp()">
-                        LOGIN
-                    </button>
-                </div>
-                <br>
-                <div>
-                    <span style="color: cornflowerblue;">
-                        Not Registered? Create an account! {{EnteredOTP}}
-                    </span>
-                    <span>
-                            <button value="signup" (click)="GoToSignUpPage()">
-                                SIGN UP
-                            </button>
-                    </span>
-                </div>
-        </div>
-        {{sentOtp}}
-        <br><br>
-</div><br><br> -->
-
-<!-- <router-outlet></router-outlet> -->
+    </div>
+  </form>
+</div>

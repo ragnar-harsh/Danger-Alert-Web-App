@@ -27,10 +27,12 @@ export class AlertModels{
 
     Members = [
         {
+            id : 1,
             name : 'member1',
             mobile : 'mobile1'
         },
         {
+            id : 2,
             name : 'member2',
             mobile : 'mobile2'
         }
@@ -45,7 +47,7 @@ export class AlertModels{
     ];
 
     getAllAlerts(): any{
-        const AllAlerts = new Promise((resolve, reject) => {
+        const AllAlerts = new Promise((resolve) => {
             setTimeout(() => {
                 resolve(this.Alerts)
             }, 100)

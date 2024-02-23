@@ -26,6 +26,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate : [authenticationGuard],
+    // canActivateChild: [authenticationGuard],
     resolve: {Alerts : resolveGuard},
     children: [
       {

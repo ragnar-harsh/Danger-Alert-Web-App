@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MyHttpServiceService } from '../Service-Repository/my-http-service.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidator } from '../Helper-Repository/FormValidator';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -9,42 +12,79 @@ import { MyHttpServiceService } from '../Service-Repository/my-http-service.serv
   styleUrls: ['./sign-up.component.css']
 })
 
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
+  // UserCountryCode : any;
   UserName : any ;
   UserAge : any;
   UserEmail : any;
   UserGender : any;
-  UserCountryCode : any;
   UserMobile : any;
   EnteredOTP : any;
-  sentOtp : any;
-  AccountType : any;
-  Department : any;
   
-  constructor(private route: Router, private apiService : MyHttpServiceService ) {}
+  sentOtp : any;
+  
+  AccountType : any;
+  Department : any = null;
 
+  AccType : any;
+
+  signupForm! : FormGroup;
+  
+  constructor(private route: Router, private apiService : MyHttpServiceService,
+    private formBuilder : FormBuilder, private toastr: ToastrService ) {}
+
+
+  ngOnInit(): void {
+    this.signupForm = this.formBuilder.group({
+      UserName : ['', Validators.required],
+      UserAge : ['', Validators.required],
+      UserGender : ['', Validators.required],
+      UserMobile : ['', Validators.required],
+      UserEmail : ['', Validators.required],
+      AccType : ['', Validators.required],
+      Department : ['', Validators.nullValidator],
+      EnteredOTP : ['', Validators.required]
+    });
+  }
+
+
+// Generate OTP 
   GenerateOtp(){
-    this.apiService.genSignupOTP(this.UserMobile).subscribe((data : any) =>{
-      this.sentOtp = data;
-    },
-    (error) => { alert("Invalid Mobile No.");}
-    );
+    // if(this.UserMobile.length === 10){
+      this.apiService.genSignupOTP(this.UserMobile).subscribe((data : any) =>{
+        this.toastr.info("Please Enter the OTP to register.", data.message);
+        this.sentOtp = data.otp;
+      },
+      (error) => { this.toastr.error("Enter Correct Mobile no."); }
+      );
+    // }
+    // else{
+    //   this.toastr.error("Enter Correct Mobile no.");
+    // }
+
   }
 
   VerifyOTP(){
-    
-    this.apiService.verifyRegistrationOTP(this.UserName,
-      this.UserAge, this.UserEmail, this.UserMobile, this.UserGender, this.EnteredOTP).subscribe(
-        (response) => {
-          alert("Registered Successfully");
-
-          this.route.navigate(['login']);
-        },
-        (error) => {alert("Incorrect  OTP");}
-
-      );
-        
-
+    if(this.signupForm.valid){
+      console.log(this.signupForm.value);
+      this.apiService.verifyRegistrationOTP(this.UserName,
+        this.UserAge, this.UserEmail, this.UserMobile, this.UserGender, this.EnteredOTP, this.Department).subscribe(
+          (response: any) => {
+            this.toastr.success("User is Registered. Please Login", response.message, {easeTime: 1000});
+            this.signupForm.reset();
+  
+            this.route.navigate(['login']);
+          },
+          (error) => {this.toastr.error("OTP is incorrect");}
+  
+        );
+    }
+    else{
+      // console.log("Form Invalid!");
+      FormValidator.ValidataAllFormFields(this.signupForm);
+      this.toastr.error("Please fill with Correct Details", "Invalid Form" , {easeTime: 1000});
+    }
+      
   }
 
   canExit(){
@@ -61,33 +101,3 @@ export class SignUpComponent {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// RegUser(UserName: any, UserAge: any, UserEmail: any, UserGender: any, UserCountryCode: any, UserMobno: any ){
-  //   console.log(UserName.value);
-  //   console.log(UserAge.value);
-
-  //   console.log(UserEmail.value);
-
-  //   console.log(UserGender.value);
-  //   this.UserMobile = UserCountryCode.value + "" + UserMobno.value;
-  //   console.log(this.UserMobile);
-
-  // }
-
-  // form = this.forms.group({
-  //   UserMobile: [null, [Validators.required, Validators.pattern('[0-9]{10}')]]
-  // });

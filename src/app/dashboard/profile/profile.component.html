@@ -9,7 +9,6 @@
 
 <section id="about" class="about">
     <div class="container">
-
       <div class="section-title">
         <h2>Profile</h2>
         <br>
@@ -18,7 +17,7 @@
 
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
-          <img src={{userDetail.Profile}} class="img-fluid" alt="">
+          <img src="/assets/images/profile-img.jpg" class="img-fluid" alt="">
           <input type="file" *ngIf="editMode">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
@@ -28,40 +27,61 @@
           <div class="row" *ngIf="!editMode">
             <div class="col-lg-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Name:</strong> <span>{{userDetail.Name}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>DoB:</strong> <span>{{userDetail.DoB}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{userDetail.Phoneno}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Adhaar No.:</strong> <span>{{userDetail.Adhaarno}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Name:</strong> <span>{{userDetail.name}}</span></li>
+                <!-- <li><i class="bi bi-chevron-right"></i> <strong>DoB:</strong> <span>{{userDetail.DoB}}</span></li> -->
+                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{mobile}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Adhaar No.:</strong> <span>{{userDetail.adhaar}}</span></li>
               </ul>
             </div>
             <div class="col-lg-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong><span>{{userDetail.Age}} </span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Gender:</strong> <span>{{userDetail.Gender}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{userDetail.Email}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong><span>{{userDetail.age}} </span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Gender:</strong> <span>{{userDetail.gender}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{userDetail.email}}</span></li>
                 <li><i class="bi bi-chevron-right"></i> <strong>:</strong> <span>Available</span></li>
               </ul>
             </div>
           </div>
-          <div class="row" *ngIf="editMode">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i><strong>Name:</strong> <input type="text" [(ngModel)]="userDetail.Name"></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>DoB:</strong> <input type="date" [(ngModel)]="userDetail.DoB"></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <input type="text" [(ngModel)]="userDetail.Phoneno"></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Adhaar No.:</strong> <input type="text" [(ngModel)]="userDetail.Adhaarno"></li>
-              </ul>
+          <!-- <form  [formGroup]="ProfileForm"> -->
+            <div data-aos="fade-left" class="row" *ngIf="editMode">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i><strong>Name:</strong> <input type="text" onkeydown="return /[a-zA-Z ]/i.test(event.key)" [(ngModel)]="userDetail.name"></li>
+                  <!-- <small *ngIf="ProfileForm.controls['userDetail.name'].dirty && ProfileForm.hasError('required', 'userDetail.name')" class="text-danger">*This field is Required</small> -->
+                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>DoB:</strong> <input type="date" [(ngModel)]="userDetail.DoB"></li> -->
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <input type="number" [disabled]="true" [(ngModel)]="mobile" ></li>
+                  <!-- <small *ngIf="ProfileForm.controls['userDetail.mobile'].dirty && ProfileForm.hasError('required', 'userDetail.mobile')" class="text-danger">*This field is Required</small> -->
+
+                  <li><i class="bi bi-chevron-right"></i> <strong>Adhaar No.:</strong> <input type="number" onKeyPress="if(this.value.length>11) return false;" [(ngModel)]="userDetail.adhaar"></li>
+                  <!-- <small *ngIf="ProfileForm.controls['userDetail.adhaar'].dirty && ProfileForm.hasError('required', 'userDetail.adhaar')" class="text-danger">*This field is Required</small> -->
+
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong><input type="number" [(ngModel)]="userDetail.age"></li>
+                  <!-- <small *ngIf="ProfileForm.controls['userDetail.age'].dirty && ProfileForm.hasError('required', 'userDetail.age')" class="text-danger">*This field is Required</small> -->
+
+                  <li><i class="bi bi-chevron-right"></i> <strong>Gender:</strong> <label for="gender" *ngIf="!userDetail.gender"></label>
+                    <select class="input-field" [(ngModel)]="userDetail.gender" name="Gender" id = "gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        
+                    </select></li>
+                  <!-- <small *ngIf="ProfileForm.controls['userDetail.gender'].dirty && ProfileForm.hasError('required', 'userDetail.gender')" class="text-danger">*This field is Required</small> -->
+
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <input type="text" [(ngModel)]="userDetail.email"></li>
+                  <!-- <small *ngIf="ProfileForm.controls['userDetail.email'].dirty && ProfileForm.hasError('required', 'userDetail.email')" class="text-danger">*This field is Required</small> -->
+
+                  <li><i class="bi bi-chevron-right"></i> <strong>:</strong> <span>Available</span></li>
+                </ul>
+              </div>
             </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong><input type="text" [(ngModel)]="userDetail.Age"></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Gender:</strong> <input type="text" [(ngModel)]="userDetail.Gender"></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <input type="text" [(ngModel)]="userDetail.Email"></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>:</strong> <span>Available</span></li>
-              </ul>
-            </div>
-          </div>
-          <button *ngIf="editMode" (click)="editMode= false"[routerLink]="['/dashboard/profile']" class="saveButton"><i class="bi bi-save2"></i> Save</button>
+            <input *ngIf="OtpField" type="number" onKeyPress="if(this.value.length>3) return false;" [(ngModel)]="EnteredOTP">
+          <!-- </form> -->
+          <button (click)="verifyProfile()" *ngIf="editMode" class="saveButton"><i class="bi bi-save2"></i> Verify</button>
+          <button (click)="saveProfile()" *ngIf="OtpField" [routerLink]="['/dashboard/profile']" class="saveButton"><i class="bi bi-save2"></i> Save</button>
+        {{otp}}
         </div>
       </div>
 

@@ -14,7 +14,6 @@ nav{
     position:fixed;
     top: 0;
     z-index: 10000;
-    /* border: 2px solid red; */
 }
 button{
     background-color: black;
@@ -66,6 +65,69 @@ button:active{
     .icon{
         color: rgb(54, 184, 228);
     }
-}
+} 
 
 
+
+  @media only screen and (max-width: 600px) {
+    nav{
+        height: 40%;
+        position: relative;
+    }
+    nav div:nth-child(2) {
+      padding-top: 5px;
+    }
+
+    nav div:last-child {
+      text-align: left;
+    }
+
+    a.bttn {
+      display: block;
+      margin-bottom: 5px;
+    }
+  } 
+
+
+
+
+
+
+
+
+
+ /* nav {
+    background-color: #333;
+    overflow: hidden;
+    padding: 10px;
+    color: grey;
+  }
+
+  nav div {
+    float: left;
+    padding-top: 5px;
+  }
+
+  nav div:nth-child(2) {
+    padding-top: 11px;
+  }
+
+  nav div:last-child {
+    text-align: right;
+  }
+
+  button {
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+  }
+
+  a.bttn {
+    text-decoration: none;
+    color: rgb(196, 193, 193);
+    padding: 10px;
+    margin-right: 10px;
+  }
+  */
