@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserDetailService } from '../Data-Services/UserDetail.service';
 import { UserStoreService } from 'src/app/Service-Repository/user-store.service';
 import { MyHttpServiceService } from 'src/app/Service-Repository/my-http-service.service';
 import { DashboardService } from 'src/app/Service-Repository/dashboard.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 interface ProfileModel {
@@ -14,6 +12,7 @@ interface ProfileModel {
   email : string ,
   age : number,
   adhaar : string
+  profileurl : string
 }
 
 @Component({
@@ -25,39 +24,29 @@ export class ProfileComponent implements OnInit {
   userDetail: ProfileModel = {
     name: '',
     dob: '',
-    // mobile: '',
     gender: '',
     email: '',
     age: 0,
-    adhaar: ''
+    adhaar: '',
+    profileurl: ''
   };
 
-  // userDetail : any =[];
   editMode: boolean = false;
+  fileToUpload : File | null = null;
   
   OtpField : boolean = false;
 
   EnteredOTP : any;
   otp : any;
 
-  // ProfileForm! : FormGroup;
-
   mobile : any;
-  // name:any;
-  // dob: any;
-  // mobile: any;
-  // email: any;
-  // gender: any;
-  // age: any;
-  // adhaar: any;
-  constructor(private model: UserDetailService, private router: Router, 
+  constructor( private router: Router, 
     private activatedRoute: ActivatedRoute, private userStore : UserStoreService,
     private authentication: MyHttpServiceService, private dashService: DashboardService,
     private toastr: ToastrService){ }
 
     
   ngOnInit(): void {
-      // this.userDetail = this.model.UserDetail;
 
       this.userStore.getMobileFromStore().subscribe((val) => {
         let mobileFromToken = this.authentication.getMobileFromToken();
@@ -67,6 +56,7 @@ export class ProfileComponent implements OnInit {
       this.dashService.getUserDetail(this.mobile).subscribe((res :any) => {
         this.userDetail = res;
       })
+      console.log(this.userDetail.profileurl);
 
       this.activatedRoute.queryParamMap.subscribe((Param) => {
         this.editMode=Boolean(Param.get('edit'));
@@ -75,18 +65,10 @@ export class ProfileComponent implements OnInit {
   } 
 
 
-  //Edit Button
-  // editButton(){
-  //   this.ProfileForm = this.formBuilder.group({
-  //     userDetail.name : ['', Validators.required],
-  //     userDetail.age = ['', Validators.required],
-  //     userDetail.gender : ['', Validators.required],
-  //     userDetail.email : ['', Validators.required],
-  //     userDetail.mobile : ['', Validators.required],
-  //     userDetail.adhaar : ['', Validators.required],
-  //   });
-  // }
 
+  handleFileInput(event: any) {
+    this.fileToUpload = event.target.files.item(0);
+  }
 
   //Save Button
   verifyProfile(){
@@ -104,9 +86,6 @@ export class ProfileComponent implements OnInit {
     else{
       this.toastr.warning(" Incorrect Form ", "Please Fill all the fields. All fields are Required");
     }
-    
-
-    
   }
 
 
@@ -114,6 +93,11 @@ export class ProfileComponent implements OnInit {
   saveProfile(){
     this.dashService.EditUser(this.userDetail, this.EnteredOTP, this.mobile).subscribe((res: any) => {
       this.toastr.success(res.message);
+      this.dashService.uploadFile(this.fileToUpload, this.mobile).subscribe((response : any) => {
+        this.toastr.success(response.message);
+      }, error => {
+        this.toastr.error("Error in Profile Uploading");
+      });
       this.OtpField = false
       this.otp = null;
     },

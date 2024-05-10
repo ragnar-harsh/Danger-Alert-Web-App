@@ -1,83 +1,95 @@
 <br>
 <div class="body">
-  <form [formGroup]="signupForm"> 
-    <div data-aos="flip-right" data-aos-duration="1500"  class="wrapper">
-        <h2>Registration</h2>
-        <div class="input-field" >
-            <label for="type" *ngIf="!AccountType">Account Type</label>
-            <select formControlName="AccType" [(ngModel)]="AccountType" name="type" id = "type" required>
-                <option value="User">Service User</option>
-                <option value="Provider">Service Provider</option>
-            </select>
-        </div>
-        <small *ngIf="signupForm.controls['AccType'].dirty && signupForm.hasError('required', 'AccType')" class="text-danger">*This field is Required</small>
+    <form [formGroup]="signupForm">
+        <div data-aos="flip-right" data-aos-duration="1500" class="wrapper">
+            <h2>Registration</h2>
+            <div class="input-field">
+                <label for="type" *ngIf="!AccountType">Account Type</label>
+                <select formControlName="AccType" [(ngModel)]="AccountType" name="type" id="type" required>
+                    <option value="User">Service User</option>
+                    <option value="Provider">Service Provider</option>
+                </select>
+            </div>
+            <small *ngIf="signupForm.controls['AccType'].dirty && signupForm.hasError('required', 'AccType')"
+                class="text-danger">*This field is Required</small>
 
-        <div *ngIf="AccountType == 'Provider'" class="input-field" >
-            <label for="department" *ngIf="!Department">Department</label>
-            <select formControlName="Department" [(ngModel)]="Department" name="Department" id = "department" required>
-                <option value="medical">Medical Department</option>
-                <option value="police">Police Department</option>
-                <option value="fire">Fire Department</option>
-                <option value="traffic">Accident Department</option>
-            </select>
-            <small *ngIf="signupForm.controls['Department'].dirty && signupForm.hasError('required', 'Department')" class="text-danger">*This field is Required</small>
-        </div>
+            <div *ngIf="AccountType == 'Provider'" class="input-field">
+                <label for="department" *ngIf="!Department">Department</label>
+                <select formControlName="Department" [(ngModel)]="Department" name="Department" id="department"
+                    required>
+                    <option value="Medical">Medical Department</option>
+                    <option value="Police">Police Department</option>
+                    <option value="Fire">Fire Department</option>
+                    <option value="Accident">Accident Department</option>
+                </select>
+                <small *ngIf="signupForm.controls['Department'].dirty && signupForm.hasError('required', 'Department')"
+                    class="text-danger">*This field is Required</small>
+            </div>
 
-        <div class="input-field">
-            <input formControlName="UserName" type="text" name="uname" onkeydown="return /[a-zA-Z ]/i.test(event.key)" [(ngModel)]="UserName" required>
-            <label>Enter your Name</label>
-        </div>
-        <small *ngIf="signupForm.controls['UserName'].dirty && signupForm.hasError('required', 'UserName')" class="text-danger">*This field is Required</small>
-        
-        <div class="input-field">
-            <input formControlName="UserAge" type="number" [(ngModel)]="UserAge" required>
-            <label>Enter your Age</label>
-        </div>
-        <small *ngIf="signupForm.controls['UserAge'].dirty && signupForm.hasError('required', 'UserAge')" class="text-danger">*This field is Required</small>
+            <div class="input-field">
+                <input formControlName="UserName" type="text" name="uname"
+                    onkeydown="return /[a-zA-Z ]/i.test(event.key)" [(ngModel)]="UserName" required>
+                <label>Enter your Name</label>
+            </div>
+            <small *ngIf="signupForm.controls['UserName'].dirty && signupForm.hasError('required', 'UserName')"
+                class="text-danger">*This field is Required</small>
 
-        <div class="input-field">
-            <input formControlName="UserEmail" type="email" ngModel email="true" [(ngModel)]="UserEmail" required>
-            <label>Enter Email</label>
-        </div>
-        <small *ngIf="signupForm.controls['UserEmail'].dirty && signupForm.hasError('required', 'UserEmail')" class="text-danger">*This field is Required</small>
-        
-        <div class="input-field" >
-            <label for="gender" *ngIf="!UserGender">Gender</label>
-            <select formControlName="UserGender" [(ngModel)]="UserGender" name="Gender" id = "gender" required>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                
-            </select>
-        </div>
-        <small *ngIf="signupForm.controls['UserGender'].dirty && signupForm.hasError('required', 'UserGender')" class="text-danger">*This field is Required</small>
-          
-        <div class="input-field">
-            <input formControlName="UserMobile" type="number" onKeyPress="if(this.value.length>9) return false;" [(ngModel)]="UserMobile"  required>
-            <label>Enter your Mobile Number</label>
-        </div>
-        <small *ngIf="signupForm.controls['UserMobile'].dirty && signupForm.hasError('required', 'UserMobile')" class="text-danger">*This field is Required<br></small>
-        <button type="submit" (click) = "GenerateOtp()">Get OTP</button>
+            <div class="input-field">
+                <input formControlName="UserAge" type="number" [(ngModel)]="UserAge" required>
+                <label>Enter your Age</label>
+            </div>
+            <small *ngIf="signupForm.controls['UserAge'].dirty && signupForm.hasError('required', 'UserAge')"
+                class="text-danger">*This field is Required</small>
 
-        <br>
-        <div class="input-field">
-            <input formControlName="EnteredOTP" type="password"  ngModel maxlength="4" [(ngModel)]="EnteredOTP" required>
-            <label>Enter your OTP</label>
-        </div>
-        <small *ngIf="signupForm.controls['EnteredOTP'].dirty && signupForm.hasError('required', 'EnteredOTP')" class="text-danger">*This field is Required<br></small>
-        <div class="forget">
-            <label for="remember">
-                <input type="checkbox" id="remember">
-                <p>Remember me</p>
-            </label>
-            <!-- <a href="#">Forgot password?</a> -->
-        </div>
-        <button type="submit" (click) = "VerifyOTP()" >Register</button>
-        <div class="register">
-            <p>Already Registered? Login Now! <button type="submit" (click)="GoToLoginPage()">Login</button></p>
-        </div>
-        {{sentOtp}}
+            <div class="input-field">
+                <input formControlName="UserEmail" type="email" ngModel email="true" [(ngModel)]="UserEmail" required>
+                <label>Enter Email</label>
+            </div>
+            <small *ngIf="signupForm.controls['UserEmail'].dirty && signupForm.hasError('required', 'UserEmail')"
+                class="text-danger">*This field is Required</small>
 
-    </div>
-  </form> 
+            <div class="input-field">
+                <label for="gender" *ngIf="!UserGender">Gender</label>
+                <select formControlName="UserGender" [(ngModel)]="UserGender" name="Gender" id="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+
+                </select>
+            </div>
+            <small *ngIf="signupForm.controls['UserGender'].dirty && signupForm.hasError('required', 'UserGender')"
+                class="text-danger">*This field is Required</small>
+
+            <div class="input-field">
+                <input formControlName="UserMobile" type="number" onKeyPress="if(this.value.length>9) return false;"
+                    [(ngModel)]="UserMobile" required>
+                <label>Enter your Mobile Number</label>
+            </div>
+            <small *ngIf="signupForm.controls['UserMobile'].dirty && signupForm.hasError('required', 'UserMobile')"
+                class="text-danger">*This field is Required<br></small>
+            <button type="submit" (click)="GenerateOtp()">Get OTP</button>
+
+            <br>
+            <div class="input-field">
+                <input formControlName="EnteredOTP" type="password" ngModel maxlength="4" [(ngModel)]="EnteredOTP"
+                    required>
+                <label>Enter your OTP</label>
+            </div>
+            <small *ngIf="signupForm.controls['EnteredOTP'].dirty && signupForm.hasError('required', 'EnteredOTP')"
+                class="text-danger">*This field is Required<br></small>
+            <div class="forget">
+                <label for="remember">
+                    <input type="checkbox" id="remember">
+                    <p>Remember me</p>
+                </label>
+                <!-- <a href="#">Forgot password?</a> -->
+            </div>
+            <button type="submit" (click)="VerifyOTP()">Register</button>
+            <div class="register">
+                <p>Already Registered? Login Now! <button type="submit" (click)="GoToLoginPage()">Login</button></p>
+            </div>
+            {{sentOtp}}
+
+        </div>
+    </form>
 </div>
 <br>

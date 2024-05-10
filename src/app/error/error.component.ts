@@ -8,10 +8,4 @@ import { Component } from '@angular/core';
 export class ErrorComponent {
 
 
-//     constructor(private toastr : ToastrService){}
-
-
-//   showToasterSuccess(){
-//     this.toastr.success("Data shown successfully !!", "ItSolutionStuff.com")
-// }
 }

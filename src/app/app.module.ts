@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,31 +23,21 @@ import { AlertModels } from './dashboard/Data-Services/AlertModels.service';
 import { resolveGuard } from './Guards-Repository/resolveGuard.guard';
 import { MemberComponent } from './dashboard/member/member.component';
 import { CustomAlertComponent } from './dashboard/custom-alert/custom-alert.component';
-import { UserDetailService } from './dashboard/Data-Services/UserDetail.service';
 import { TokenInterceptor } from './Interceptors/token.interceptor';
 import { ToastrModule } from 'ngx-toastr';
-import { DashboardService } from './Service-Repository/dashboard.service';
+import { environment } from '../assets/environment/environment';
+import { initializeApp } from 'firebase/app';
+initializeApp(environment.firebase);
+
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    SignUpComponent,
-    HomeComponent,
-    ContactComponent,
-    AboutComponent,
-    ServicesComponent,
-    DashboardComponent,
-    ErrorComponent,
-    FooterComponent,
-    NavigationComponent,
-    FactsComponent,
-    MapComponent,
-    ServiceComponent,
-    ProfileComponent,
-    MemberComponent,
-    CustomAlertComponent,
+    AppComponent, LoginComponent, SignUpComponent, HomeComponent, ContactComponent, AboutComponent, ServicesComponent,
+    DashboardComponent, ErrorComponent, FooterComponent, NavigationComponent,FactsComponent, MapComponent,
+    ServiceComponent, ProfileComponent, MemberComponent, CustomAlertComponent,
   ],
+
   imports: [
     FormsModule,
     HttpClientModule,
@@ -55,10 +45,10 @@ import { DashboardService } from './Service-Repository/dashboard.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
-  providers: [AlertModels, resolveGuard, UserDetailService, 
-     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+
+  providers: [AlertModels, resolveGuard, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

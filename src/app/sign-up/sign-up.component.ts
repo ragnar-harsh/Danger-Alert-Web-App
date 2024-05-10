@@ -50,23 +50,22 @@ export class SignUpComponent implements OnInit {
 
 // Generate OTP 
   GenerateOtp(){
-    // if(this.UserMobile.length === 10){
+    if(this.UserMobile){
       this.apiService.genSignupOTP(this.UserMobile).subscribe((data : any) =>{
         this.toastr.info("Please Enter the OTP to register.", data.message);
         this.sentOtp = data.otp;
       },
       (error) => { this.toastr.error("Enter Correct Mobile no."); }
       );
-    // }
-    // else{
-    //   this.toastr.error("Enter Correct Mobile no.");
-    // }
+    }
+    else{
+      this.toastr.error("Enter Correct Mobile no.");
+    }
 
   }
 
   VerifyOTP(){
     if(this.signupForm.valid){
-      console.log(this.signupForm.value);
       this.apiService.verifyRegistrationOTP(this.UserName,
         this.UserAge, this.UserEmail, this.UserMobile, this.UserGender, this.EnteredOTP, this.Department).subscribe(
           (response: any) => {

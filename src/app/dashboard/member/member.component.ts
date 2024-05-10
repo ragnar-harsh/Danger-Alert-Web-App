@@ -20,9 +20,6 @@ interface MemberModel{
   styleUrls: ['./member.component.css']
 })
 
-
-
-
 export class MemberComponent implements OnInit{
   addMemeber = false;
   Members : any = [];
@@ -55,9 +52,6 @@ export class MemberComponent implements OnInit{
     });
 
   }
-
-
-  
 
 //Add Member Button
   AddMemeber(){

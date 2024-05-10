@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "firstProject": {
+    "first-project": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -22,7 +22,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/js/firebase-messaging-sw.js",
+              "src/assets/js/manifest.json"
             ],
             "styles": [
               "src/styles.css",
@@ -66,13 +68,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "firstProject:build:production"
+              "browserTarget": "first-project:build:production"
             },
             "development": {
-              "browserTarget": "firstProject:build:development",
+              "browserTarget": "first-project:build:development",
               "proxyConfig": "./Proxy-Config.json"
-
-              
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "firstProject:build"
+            "browserTarget": "first-project:build"
           }
         },
         "test": {

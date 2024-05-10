@@ -1,25 +1,33 @@
-interface customAlertModel{
-    icon : string;
+interface customAlertModel {
+    icon: string;
     category: string;
     message: string;
-  }
+}
 
-export class AlertModels{
+export class AlertModels {
     Alerts = [
-        {   icon: 'bi-heart-pulse-fill',
+        {
+            icon: 'bi-heart-pulse-fill',
+            type: 'Medical',
             category: 'Raise Medical Emergency',
             message: 'Get Ambulance at Your Live Location'
         },
-        {   icon: 'bi-fire',
+        {
+            icon: 'bi-fire',
+            type: 'Fire',
             category: 'Raise Fire Emergency',
             message: 'Get Fire Brigade Team at Your Live Location'
         },
-        
-        {   icon: 'bi-car-front-fill',
+
+        {
+            icon: 'bi-car-front-fill',
+            type: 'Traffic',
             category: 'Raise Road Accident Alert',
             message: 'Get Help at any Place'
         },
-        {   icon: 'bi-shield-check',
+        {
+            icon: 'bi-shield-check',
+            type: 'Police',
             category: 'Report Criminal Activity',
             message: 'Report Crime and Get help from nearest Police Station'
         }
@@ -27,26 +35,26 @@ export class AlertModels{
 
     Members = [
         {
-            id : 1,
-            name : 'member1',
-            mobile : 'mobile1'
+            id: 1,
+            name: 'member1',
+            mobile: 'mobile1'
         },
         {
-            id : 2,
-            name : 'member2',
-            mobile : 'mobile2'
+            id: 2,
+            name: 'member2',
+            mobile: 'mobile2'
         }
     ]
 
     CustomAlerts: customAlertModel[] = [
         {
-           icon: 'bi-shield-check',
+            icon: 'bi-shield-check',
             category: 'Report Criminal Activity',
             message: 'Report Crime and Get help from nearest Police Station'
         }
     ];
 
-    getAllAlerts(): any{
+    getAllAlerts(): any {
         const AllAlerts = new Promise((resolve) => {
             setTimeout(() => {
                 resolve(this.Alerts)

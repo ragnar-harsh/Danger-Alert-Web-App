@@ -7,31 +7,34 @@ import { MyHttpServiceService } from './Service-Repository/my-http-service.servi
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
- 
+
 })
-export class AppComponent implements OnInit, DoCheck{
+export class AppComponent implements OnInit, DoCheck {
 
   displayLoadingIndicator = false;
-  isLoggedIn : boolean = false;
+  isLoggedIn: boolean = false;
 
-  constructor(private router : Router, private authentication : MyHttpServiceService){
+  constructor(private router: Router, private authentication: MyHttpServiceService,
+  ) {
     Aos.init();
   }
+
+
   ngDoCheck(): void {
     this.isLoggedIn = this.authentication.isLoggedIn();
   }
+
+
   ngOnInit(): void {
     this.router.events.subscribe((navEvent) => {
-      if(navEvent instanceof NavigationStart){
+      if (navEvent instanceof NavigationStart) {
         this.displayLoadingIndicator = true;
       }
-      if(navEvent instanceof NavigationEnd || navEvent instanceof NavigationCancel || navEvent instanceof NavigationError){
+      if (navEvent instanceof NavigationEnd || navEvent instanceof NavigationCancel || navEvent instanceof NavigationError) {
         this.displayLoadingIndicator = false;
       }
     })
 
     this.isLoggedIn = this.authentication.isLoggedIn();
   }
-
-
 }

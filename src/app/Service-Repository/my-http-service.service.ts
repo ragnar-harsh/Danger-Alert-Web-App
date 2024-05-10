@@ -1,10 +1,8 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-
-
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
@@ -16,8 +14,6 @@ const httpOptions = {
 
 
 export class MyHttpServiceService {
-  // apiURL = "http://localhost:5172/api/AuthenticationController";
-  
 
   apiURL = 'apilocal/';
   userPayload : any;
@@ -50,11 +46,12 @@ export class MyHttpServiceService {
 
 
 // Validate the Login
-  verifyLogin(mob : any, EnteredOtp : any) : Observable<any[]>{
+  verifyLogin(mob : any, EnteredOtp : any, fireBaseId : string) : Observable<any[]>{
     var URL = `${this.apiURL}Authentication/login`;
     let URLBodyparams = new URLSearchParams();
     URLBodyparams.append('mobile', mob);
     URLBodyparams.append('otp', EnteredOtp);
+    URLBodyparams.append('fireBaseId', fireBaseId);
     return this.http.post<any>(URL, URLBodyparams, httpOptions);
   }
 
@@ -75,8 +72,6 @@ export class MyHttpServiceService {
   }
 
 
-
-  
 /////////////////
   //Token Handling//
 ///////////////

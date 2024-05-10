@@ -5,21 +5,23 @@ import { DashboardService } from 'src/app/Service-Repository/dashboard.service';
 import { UserStoreService } from 'src/app/Service-Repository/user-store.service';
 import { MyHttpServiceService } from 'src/app/Service-Repository/my-http-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { AlertService } from 'src/app/Service-Repository/alert.service';
 
 @Component({
   selector: 'app-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.css']
 })
-export class ServiceComponent {
-  Alerts : any = [] ;
-  CustomAlerts : any = [];
-  mobile: any;
+export class ServiceComponent implements OnInit {
+  Alerts: any = [];
+  CustomAlerts: any = [];
+  mobile: string;
 
 
-  constructor(private alertModel : AlertModels, private route : ActivatedRoute,
-    private dashService: DashboardService, private userStore : UserStoreService,
-    private authentication : MyHttpServiceService, private toastr: ToastrService){}
+  constructor(private alertModel: AlertModels, private route: ActivatedRoute,
+    private dashService: DashboardService, private userStore: UserStoreService,
+    private authentication: MyHttpServiceService, private toastr: ToastrService,
+    private alertService: AlertService) { }
 
 
   ngOnInit() {
@@ -43,8 +45,12 @@ export class ServiceComponent {
 
 
 
-  RaiseAlert(){
-    this.toastr.info("Alert Raised");
+  RaiseAlert(type: string) {
+    if (confirm("Are you sure to Raise Alert ? ")) {
+      this.alertService.RaiseAlert(type, this.mobile).subscribe((res: any) => {
+        this.toastr.info(res.message);
+      });
+    }
   }
 
 }
