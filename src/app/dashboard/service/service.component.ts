@@ -44,13 +44,39 @@ export class ServiceComponent implements OnInit {
   }
 
 
-
+//Raise Alert
   RaiseAlert(type: string) {
     if (confirm("Are you sure to Raise Alert ? ")) {
-      this.alertService.RaiseAlert(type, this.mobile).subscribe((res: any) => {
-        this.toastr.info(res.message);
-      });
+      this.PlayEmergencyAudio();
+      this.alertService.RaiseAlert(type, this.mobile);
     }
+  }
+  // RaiseAlert(type: string) {
+  //   if (confirm("Are you sure to Raise Alert ? ")) {
+  //     this.alertService.RaiseAlert(type, this.mobile).subscribe((res: any) => {
+  //       this.toastr.info(res.message);
+  //       this.PlayEmergencyAudio();
+  //     });
+  //   }
+  // }
+
+  //Raise Custom Alerts
+  RaiseCustomAlert(alert : any){
+    if(confirm("Are you sure to Raise Custom Alert?")){
+      this.alertService.RaiseCustomAlert(this.mobile, alert).subscribe((res : any) => {
+        this.toastr.info(res.message);
+        this.PlayEmergencyAudio();
+      })
+    }
+  }
+
+  //Raise Emergency Audio Signal
+  PlayEmergencyAudio(){
+    let audio = new Audio();
+      audio.src = "assets/audio/emergency-alarm.wav";
+      audio.volume = 1;
+      audio.load();
+      audio.play();
   }
 
 }

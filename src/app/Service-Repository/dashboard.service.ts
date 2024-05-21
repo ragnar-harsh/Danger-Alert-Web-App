@@ -119,14 +119,13 @@ export class DashboardService {
 
   //Update Location
   UpdateLocation(mobile : string, lat : any, long : any){
-    console.log("function called -> " + lat + " " + long);
     var url = `${this.alertController}UpdateLocation`;
     let URLBodyparams = new URLSearchParams();
     URLBodyparams.append('Mobile', mobile);
     URLBodyparams.append('Lattitude', lat);
     URLBodyparams.append('Longitude', long);
     this.http.post<any>(url, URLBodyparams, httpOptions).subscribe((res : any) => {
-      console.log(res.message);
+      // console.log(res.message);
     },
   (error) => {
     console.log("Some error Occured");

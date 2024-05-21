@@ -16,13 +16,13 @@ export class DashboardComponent implements OnInit {
   sidebar: any = true;
   mobile: string = "";
 
-  lattitude : any;
-  longitude : any;
+  lattitude: any;
+  longitude: any;
 
   activeInbox = false;
 
   constructor(private authentication: MyHttpServiceService, private toastr: ToastrService,
-    private userStore: UserStoreService, private dashService : DashboardService) { }
+    private userStore: UserStoreService, private dashService: DashboardService) { }
 
 
   ngOnInit(): void {
@@ -49,8 +49,10 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    this.toastr.success("You Logged out Successfull!", "Logout Successfully", { easeTime: 1000 });
-    this.authentication.signOut();
+    if (confirm("Are you sure to Log out?")) {
+      this.toastr.success("You Logged out Successfull!", "Logout Successfully", { easeTime: 1000 });
+      this.authentication.signOut();
+    }
   }
 
 
@@ -61,7 +63,6 @@ export class DashboardComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lattitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        console.log(this.lattitude + " " + this.longitude);
       });
       setTimeout(() => {
         this.dashService.UpdateLocation(this.mobile, this.lattitude, this.longitude);

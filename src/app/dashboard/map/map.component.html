@@ -1,20 +1,33 @@
-<!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Map</h2>
-      </div>
-
-
-        <!-- <div class="col-lg-8 d-flex align-items-stretch"> -->
-          <!-- <div class="info">
-
-            <iframe data-aos="fade-left" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 200%; height: 490px;" allowfullscreen></iframe>
-          </div> -->
-          
-          <!-- </div> -->
-          <div id="map"></div>
-
+  <div class="container">
+    <div class="section-title">
+      <h2>Map</h2>
     </div>
-  </section><!-- End Contact Section -->
+    <div data-aos="fade-left" *ngIf="ServiceProvider != null && type == 'Service User'" id="card">
+      <h4> Service Provider</h4>
+      <div id="text">{{ServiceProvider.name}} <br>
+        +91 - {{ServiceProvider.mobile}} <br>
+
+      </div>
+      <div class="butn">
+        <button> <i class="bi bi-telephone"></i> Call</button>
+        <button (click)="DropAlert()"> <i class="bi bi-shield-check"></i> Drop Alert </button>
+      </div>
+    </div>
+    <div data-aos="fade-left" *ngIf="ServiceProvider != null && type != 'Service User'" id="card">
+      <h4> Service User</h4>
+      <div id="text">
+        +91 - {{ServiceProvider.user_mobile}} <br>
+
+        User Needs your Help
+
+      </div>
+      <div class="butn">
+        <button> <i class="bi bi-telephone"></i> Call</button>
+        <button (click)="DropAlert()"> <i class="bi bi-shield-check"></i> Drop Alert </button>
+      </div>
+    </div>
+    <div data-aos="fade-right" id="map">
+    </div>
+  </div>
+</section>

@@ -12,3 +12,8 @@ firebase.initializeApp({
     measurementId: "G-FQ9KLF0HY5"
 });
 const messaging = firebase.messaging();
+
+messaging.onMessage((payload) => {
+  console.log('Message received. ', payload);
+  // ...
+});

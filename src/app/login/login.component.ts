@@ -6,7 +6,7 @@ import { FormValidator } from '../Helper-Repository/FormValidator';
 import { ToastrService } from 'ngx-toastr';
 import { UserStoreService } from '../Service-Repository/user-store.service';
 import { AlertService } from '../Service-Repository/alert.service';
-import { getMessaging, getToken } from 'firebase/messaging';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { environment } from '../../assets/environment/environment';
 
 
@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
   usersList1: any = [];
   sentOtp: any;
   loginForm!: FormGroup;
-  fireBaseId : string;
-  swr : any;
+  fireBaseId: string;
+  swr: any;
 
   constructor(private router: Router, private apiService: MyHttpServiceService,
     private formBuilder: FormBuilder, private toastr: ToastrService,
-    private userStore: UserStoreService, private alertService : AlertService ) {
+    private userStore: UserStoreService, private alertService: AlertService) {
 
     this.apiService.getUserr().subscribe((data: any[]) => {
       this.usersList1 = data;
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       UserMobile: ['', Validators.required],
       EnteredOTP: ['', Validators.required]
     });
-    
+
     this.requestPermission();
   }
 
@@ -95,14 +95,15 @@ export class LoginComponent implements OnInit {
   // Request Notification Permission
   async requestPermission() {
     const messaging = getMessaging();
-      const token = await getToken(messaging, {vapidKey : environment.firebase.vpaidKey }).then((currentId) => {
-        if(currentId){
-          this.fireBaseId = currentId;
-          console.log(currentId);
-        }else{
-          console.log("some error occured");
-        }
-      });
-    }
-  
+    const token = await getToken(messaging, { vapidKey: environment.firebase.vpaidKey }).then((currentId) => {
+      if (currentId) {
+        this.fireBaseId = currentId;
+        console.log(currentId);
+      } else {
+        console.log("some error occured");
+      }
+    });
+  }
+
+
 }

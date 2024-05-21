@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, DoCheck {
   displayLoadingIndicator = false;
   isLoggedIn: boolean = false;
 
+  
   constructor(private router: Router, private authentication: MyHttpServiceService,
   ) {
     Aos.init();
