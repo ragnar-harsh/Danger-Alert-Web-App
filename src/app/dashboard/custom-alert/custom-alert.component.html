@@ -3,7 +3,7 @@
     <h2>Create Your Custom Alerts</h2>
   </div>
   <br>
-  <button style="right: 8px; position: absolute;" (click)="AddAlert()">Add Alert  <i class="bi bi-person-add"></i></button>
+  
   <div class="card" *ngIf="CustomAlerts[0].id == -1 && CustomAlerts[1].id == -1 && CustomAlerts[2].id == -1">
     <br><br> No Custom Alerts Created.
     <br><br><br><br>
@@ -27,6 +27,7 @@
       
     </div>
   </ng-container>
+  <button (click)="AddAlert()">Add Alert  <i class="bi bi-person-add"></i></button>
 
   
 

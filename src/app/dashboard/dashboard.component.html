@@ -7,16 +7,14 @@
       <h4 id="name-text" class="text-light">+91 - {{mobile}}</h4>
       <h4 id="name-text" class="text-light"><span *ngIf="role !== 'Service User'">Service Provider - </span>{{role}}</h4>
     </div>
-    <!-- <br> -->
     <nav id="navbar" class="nav-menu navbar">
       <ul>
-        <!-- <li><a href="#hero" class="nav-link  active"><i class="bx bx-home"></i> <span>Home</span></a></li> -->
         <li><a routerLink="profile" class="nav-link "><i class="bx bx-file-blank"></i> <span>Profile</span></a></li>
         <li><a routerLink="members" class="nav-link "><i class="bx bx-book-content"></i> <span>Members</span></a></li>
         <li><a routerLink="service" class="nav-link "><i class="bx bx-server"></i> <span>Services</span></a></li>
         <li><a routerLink="customAlerts" class="nav-link "><i class="bx bx-user"></i> <span>Custom Alerts</span></a></li>
         <li><a routerLink="map" class="nav-link "><i class="bi bi-globe-americas"></i> <span> Map</span></a></li>
-        <li><a routerLink="/logout" (click)="logout()" class="nav-link "><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a></li>
+        <li><a  (click)="logout()" class="nav-link "><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a></li>
       </ul>
     </nav>
     <!-- .nav-menu -->
@@ -25,14 +23,10 @@
 <!-- End Header -->
 
 
-<i class="bi bi-arrow-left-square-fill toogle" *ngIf="sidebar;  else elseblk;" (click)="togglebar()">
+<i class="bi bi-list toogle" *ngIf="width" (click)="sidebar = !sidebar">
 </i>
-<ng-template   #elseblk>
-  <i class="bi bi-arrow-right-square-fill toogle" style="left: 5px;" (click)="togglebar()"></i>
-</ng-template>
 
-
-<div class="icon-box" (click)="activeInbox=true">
+<!-- <div class="icon-box" (click)="activeInbox=true">
   <div class="icon"><i class="bi bi-exclamation-square-fill pos-icon"></i></div>
   <span class="count">7</span>
 </div>
@@ -43,7 +37,7 @@
     <div class="icon"><i class="bi bi-x-lg"></i></div>
   </div>
   <div class="inbox"></div>
-</div>
+</div> -->
 
 <main id="main">
   <br>

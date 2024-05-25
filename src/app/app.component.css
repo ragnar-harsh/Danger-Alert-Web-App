@@ -9,66 +9,6 @@
     /* max-width: 100%;
     overflow-x: hidden; */
 }
-nav{
-    background-color: black;
-    height: 8%;
-    width: 100%;
-    position:fixed;
-    top: 0;
-    z-index: 10000;
-}
-button{
-    background-color: black;
-    border: 2px solid black;
-    margin-top: 2px;
-    color: grey;
-    padding: 6px;
-    border-radius: 10px;
-    font-size: 17px;
-}
-span{
-    text-align: right;
-    padding: 4px;
-}
-button:hover{
-    color:white;
-    .icon{
-        color: rgb(54, 184, 228);
-    }
-}
-button:active{
-    color: red;
-}
-
-.bttn{
-    background-color: black;
-    border: 2px solid black;
-    margin-top: 3px;
-    color: grey;
-    padding: 1px;
-    font-size: 16px;
-    text-decoration:none;
-    
-
-}
-.bttn:hover { 
-    color: white;
-    .icon{
-        color: rgb(37, 172, 218);
-    }
-
-}
-.bttn:active{
-    color: white;
-}  
-
-.actv{
-    color: white;
-    .icon{
-        color: rgb(54, 184, 228);
-    }
-}
-
 .spinner{
     height: 50px;
     width: 50px;

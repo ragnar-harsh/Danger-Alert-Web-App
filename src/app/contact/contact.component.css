@@ -1,47 +1,4 @@
-.mainDiv{
-    background-image: url('/assets/images/contact_image.jpg');
-    background-repeat: no-repeat;
-    background-size: 100% 30%;
-    
-    height: fit-content;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    border: 0.1px solid rgb(1, 25, 36);
-    text-align: center;
-
-}
-
-.bodyDiv{
-    height: fit-content;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    background-image: linear-gradient(180deg, rgb(2, 163, 29), rgb(0, 54, 75));
-    backdrop-filter: blur(5px);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 5px 5px 10px black;
-
-
-
-}
-
-.bodyP1{
-    height: 600px;
-    width: 100%;
-    padding: 18vh;
-
-
-}
-.bg-image{
-    background: url("/assets/images/Contact_image1.jpg"), #000;
-    background-position: center;
-    background-size: cover;  
-}
-
-
+/* General Styles */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
 
 * {
@@ -58,6 +15,7 @@ body {
   min-height: 100vh;
   width: 100%;
   padding: 0 10px;
+  margin: 0;
 }
 
 body::before {
@@ -65,20 +23,61 @@ body::before {
   position: absolute;
   width: 100%;
   height: 110%;
-  /* background: url("https://www.codingnepalweb.com/demos/create-glassmorphism-login-form-html-css/hero-bg.jpg"), #000; */
   background: url("/assets/images/verification_image.jpg"), #000;
   background-position: center;
   background-size: cover;
 }
 
+.mainDiv {
+  background-image: url('/assets/images/contact_image.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 30%;
+  height: fit-content;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border: 0.1px solid rgb(1, 25, 36);
+  text-align: center;
+}
+
+.bodyDiv {
+  height: fit-content;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(180deg, rgb(2, 163, 29), rgb(0, 54, 75));
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 10px black;
+  padding: 20px;
+}
+
+.bodyP1 {
+  width: 100%;
+  padding: 5vh 2vw;
+}
+
+.bg-image {
+  background: url("/assets/images/Contact_image1.jpg"), #000;
+  background-position: center;
+  background-size: cover;
+}
+
 .wrapper {
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   border-radius: 8px;
   padding: 30px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: auto;
 }
 
 form {
@@ -108,12 +107,16 @@ h2 {
   pointer-events: none;
   transition: 0.15s ease;
 }
-textarea{
+
+.input-field textarea {
   background: transparent;
   border: none;
   color: #fff;
 }
-.input-field textarea:focus~label {
+
+.input-field textarea:focus ~ label,
+.input-field input:focus ~ label,
+.input-field input:valid ~ label {
   font-size: 0.8rem;
   top: 10px;
   transform: translateY(-120%);
@@ -128,21 +131,6 @@ textarea{
   font-size: 16px;
   color: #fff;
 }
-
-.input-field input:focus~label,
-.input-field input:valid~label {
-  font-size: 0.8rem;
-  top: 10px;
-  transform: translateY(-120%);
-}
-
-/* .forget {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px 0 35px 0;
-  color: #fff;
-} */
 
 #remember {
   accent-color: #fff;
@@ -189,4 +177,66 @@ button:hover {
   text-align: center;
   margin-top: 30px;
   color: #fff;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+  .bodyDiv {
+    width: 95%;
+  }
+
+  .bodyP1 {
+    padding: 4vh 2vw;
+  }
+
+  .wrapper {
+    width: 95%;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainDiv {
+    background-size: 100% 40%;
+  }
+
+  .bodyDiv {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .bodyP1 {
+    padding: 3vh 2vw;
+  }
+
+  .wrapper {
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bodyP1 {
+    padding: 2vh 1vw;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  button {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
 }

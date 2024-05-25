@@ -1,111 +1,207 @@
+.main {
+  height: 56.5vh;
+  background: url("/assets/images/home_image.jpg"), #000;
+  background-position: center;
+  background-size: cover;
+}
 
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  .main{
-    height: 56.5vh;
-    background: url("/assets/images/home_image.jpg"), #000;
-    background-position: center;
-    background-size: cover;
-    
-  }
-  
-  header {
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    
-  }
-  
-  img{
-    width: 70vh;
-    height: 70vh; 
-    padding-top: 20px;
-  }
-  
-  section {
-    margin: 20px;
-  }
-  
-  h2 {
-    color: #3498db;
-    font-size: 30px;
-  }
-  
-  #company-info, #mission-vision {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
-    text-align: center;
-  }
+header {
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
 
-  #team{
-    display: flex; flex-wrap: wrap; justify-content: space-around;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
-    text-align: center;
-  }
-  .team-member {
-    padding: 10px;
-    
-    transition: transform 0.3s;
-    text-align: center;
-    margin-top: 20px;
-    margin: 20px;
-    width: 40vh;
-    align-items: center;
+img {
+  width: 100%;
+  height: auto;
+  max-width: 70vh;
+  max-height: 70vh;
+  padding-top: 20px;
+}
+
+section {
+  margin: 20px;
+}
+
+h2 {
+  color: #3498db;
+  font-size: 2em;
+}
+
+#company-info, .mission-vision {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.team-member {
+  padding: 10px;
+  transition: transform 0.3s;
+  text-align: center;
+  margin: 20px;
+  flex: 1 1 calc(50% - 40px); /* Adjust based on desired width */
+  max-width: 40vh;
+  align-items: center;
 }
 
 .team-member:hover {
-    transform: translateY(-20px);
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgb(0, 0, 0);
+  transform: translateY(-20px);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgb(0, 0, 0);
 }
 
-@media (max-width: 768px) {
-    .team-member {
-        flex: 1 1 100%;
-    }
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
-  
-  footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+
+button {
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+h3 {
+  color: #3498db;
+  font-size: 1.6em;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+#p-content {
+  padding-top: 23vh;
+  font-size: 1.4em;
+}
+
+/* Media Queries for Different Screen Sizes */
+@media (max-width: 1200px) {
+  .team-member {
+      flex: 1 1 calc(33% - 40px);
+  }
+}
+
+@media (max-width: 992px) {
+  .team-member {
+      flex: 1 1 calc(50% - 40px);
+  }
+
+  img {
+      padding-top: 15px;
+  }
+
+  h2 {
+      font-size: 1.8em;
+  }
+
+  h3 {
+      font-size: 1.4em;
+  }
+
+  p {
+      font-size: 1.1em;
+  }
+
+  #p-content {
+      padding-top: 15vh;
+      font-size: 1.3em;
   }
 
   button {
-    background: #fff;
-    color: #000;
-    font-weight: 600;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-size: 16px;
-    border: 2px solid transparent;
-    transition: 0.3s ease;
-  }
-  
-  button:hover {
-    color: #fff;
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.15);
+      font-size: 0.9rem;
+      padding: 10px 18px;
   }
 
-  h3{
-    color: #3498db;
-    font-size: 26px;
+  footer {
+      padding: 10px 5px;
   }
-  p{
-    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .team-member {
+      flex: 1 1 100%;
   }
 
-  #p-content{
-    padding-top: 23vh; font-size: 22px;
+  img {
+      padding-top: 10px;
   }
+
+  h2 {
+      font-size: 1.5em;
+  }
+
+  h3 {
+      font-size: 1.2em;
+  }
+
+  p {
+      font-size: 1em;
+  }
+
+  #p-content {
+      padding-top: 10vh;
+      font-size: 1.2em;
+  }
+
+  button {
+      font-size: 0.8rem;
+      padding: 8px 16px;
+  }
+
+  footer {
+      padding: 8px 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+      font-size: 1.2em;
+  }
+
+  h3 {
+      font-size: 1em;
+  }
+
+  p {
+      font-size: 0.9em;
+  }
+
+  #p-content {
+      padding-top: 5vh;
+      font-size: 1em;
+  }
+
+  button {
+      font-size: 0.7rem;
+      padding: 6px 12px;
+  }
+}
+

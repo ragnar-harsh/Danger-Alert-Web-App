@@ -14,6 +14,7 @@
   min-height: 100vh;
   width: 100%;
   padding: 0 10px;
+  margin: 0;
 }
 
 .body::before {
@@ -21,20 +22,23 @@
   position: absolute;
   width: 100%;
   height: 110%;
-  /* background: url("https://www.codingnepalweb.com/demos/create-glassmorphism-login-form-html-css/hero-bg.jpg"), #000; */
   background: url("/assets/images/verification_image.jpg"), #000;
   background-position: center;
   background-size: cover;
 }
 
 .wrapper {
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   border-radius: 8px;
   padding: 30px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: auto;
 }
 
 form {
@@ -75,8 +79,8 @@ h2 {
   color: #fff;
 }
 
-.input-field input:focus~label,
-.input-field input:valid~label {
+.input-field input:focus ~ label,
+.input-field input:valid ~ label {
   font-size: 0.8rem;
   top: 10px;
   transform: translateY(-120%);
@@ -137,6 +141,58 @@ button:hover {
   color: #fff;
 }
 
-.error{
+.error {
   border: 2px solid red;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .wrapper {
+    width: 80%;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    width: 70%;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
 }

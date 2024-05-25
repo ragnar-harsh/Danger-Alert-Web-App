@@ -13,9 +13,6 @@ const httpOptions = {
 })
 export class AlertService {
 
-  // isAlertRaised: boolean = false;
-  // CurrentServiceProvider : any = null;
-
   basePath = 'apistate/';
 
   constructor(private http: HttpClient, private toastr : ToastrService,
@@ -28,8 +25,11 @@ export class AlertService {
   /////////////
 
   RaiseAlert(type: string, mobile: string){
-    var url = `${this.basePath}AlertRaised?mobile=`+ mobile + `&type=` + type; 
-    this.http.post<any>(url, httpOptions).subscribe((res) => {
+    var url = `${this.basePath}AlertRaised`;
+    let urlBodyParams = new URLSearchParams();
+    urlBodyParams.append('mobile', mobile);
+    urlBodyParams.append('type', type);
+    this.http.post<any>(url, urlBodyParams, httpOptions).subscribe((res) => {
       this.toastr.info(res.message);
       this.router.navigate(['/dashboard/map']);
     })

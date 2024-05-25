@@ -1,13 +1,10 @@
 <body class="bgr">
   <app-navigation *ngIf="!isLoggedIn"></app-navigation>
 
-
-
   <div [ngStyle]="{'margin-top': !isLoggedIn ? '7.8vh' : '0vh' }">
     <div class="spinner" *ngIf="displayLoadingIndicator"></div>
     <router-outlet></router-outlet>
   </div>
-
 
   <app-footer *ngIf="!isLoggedIn"></app-footer>
 </body>

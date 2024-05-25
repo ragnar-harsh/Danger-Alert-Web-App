@@ -1,5 +1,4 @@
-
-h1{
+h1 {
   color: rgb(49, 173, 211);
 }
 
@@ -11,6 +10,7 @@ h1{
   position: relative;
   color: #65c5f1;
 }
+
 .section-title h2::after {
   content: "";
   position: absolute;
@@ -28,75 +28,89 @@ h1{
   padding: 15px;
   margin: 10px;
   width: 500px;
+  /* Default width */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: none;
   color: white;
   text-align: center;
 }
+
 .name {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 5px;
   color: white;
 }
+
 .phone {
   font-size: 18px;
   color: white;
 }
-  
-  .card_header {
-    display: flex;
-    align-items: center;
-  }
-  
-  .field {
-    padding-bottom: 10px;
-  }
-  
-  .input {
-    border-radius: 5px;
-    background-color: #e9e9f7;
-    padding: 5px;
-    width: 100%;
-    color: #7a7ab3;
-    border: 1px solid #dadaf7
-  }
-  
-  .input:focus-visible {
-    outline: 1px solid #aeaed6;
-  }
-  
-  .input::placeholder {
-    color: #bcbcdf;
-  }
-  
-  label {
-    color: #B2BAC8;
-    font-size: 14px;
-    display: block;
-    padding-bottom: 4px;
-  }
-  
-  button {
-    background-color: #7878bd;
-    margin-top: 10px;
-    font-size: 14px;
-    padding: 7px 12px;
-    height: auto;
-    font-weight: 500;
-    color: white;
-    border: none;
-  }
-  
-  button:hover {
-    background-color: #5f5f9c;
-  }
 
-  i{
-    color: white;
-  }
+.card_header {
+  display: flex;
+  align-items: center;
+}
 
-  i:hover{
-    color: #03a9f4;
-    cursor: pointer;
+.field {
+  padding-bottom: 10px;
+}
+
+.input {
+  border-radius: 5px;
+  background-color: #e9e9f7;
+  padding: 5px;
+  width: 100%;
+  color: #7a7ab3;
+  border: 1px solid #dadaf7;
+}
+
+.input:focus-visible {
+  outline: 1px solid #aeaed6;
+}
+
+.input::placeholder {
+  color: #bcbcdf;
+}
+
+label {
+  color: #b2bac8;
+  font-size: 14px;
+  display: block;
+  padding-bottom: 4px;
+}
+
+button {
+  background-color: #7878bd;
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 7px 12px;
+  height: auto;
+  font-weight: 500;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #5f5f9c;
+}
+
+i {
+  color: white;
+}
+
+i:hover {
+  color: #03a9f4;
+  cursor: pointer;
+}
+
+/* Media Queries for Responsiveness */
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 90%;
+    /* Adjusted width for smaller screens */
+    margin: 10px auto;
+    /* Center the card */
   }
+}

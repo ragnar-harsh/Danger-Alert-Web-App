@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
   sidebar: any = true;
   mobile: string = "";
 
+  width: any;
+
   lattitude: any;
   longitude: any;
 
@@ -26,6 +28,13 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
+    if(window.innerWidth < 1500){
+      this.width = true;
+      this.sidebar = false;
+    }
+      // console.log(window.innerWidth);
+
     this.userStore.getFullNameFromStore().subscribe((val) => {
       let fullNameFromToken = this.authentication.getFullNameFromToken();
       this.fullName = val || fullNameFromToken;
@@ -44,10 +53,6 @@ export class DashboardComponent implements OnInit {
     this.getLocation();
   }
 
-  togglebar() {
-    this.sidebar = !this.sidebar;
-  }
-
   logout() {
     if (confirm("Are you sure to Log out?")) {
       this.toastr.success("You Logged out Successfull!", "Logout Successfully", { easeTime: 1000 });
@@ -64,9 +69,10 @@ export class DashboardComponent implements OnInit {
         this.lattitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
       });
+      console.log(this.lattitude);
       setTimeout(() => {
         this.dashService.UpdateLocation(this.mobile, this.lattitude, this.longitude);
-      }, 1000);
+      }, 2000);
     }
   }
 }
